@@ -5,6 +5,7 @@ class Pet {
     this.age = petObj.age
     this.happiness = petObj.happiness
     this.image = petObj.image
+    this.bio = petObj.bio
     this.active_status = petObj.active_status
     this.characteristics = petObj.characteristics
     Pet.all.push(this)
@@ -83,15 +84,15 @@ class Pet {
     document.querySelector("#pet-pic").src = this.image
   }
 
-  pBio(info){
+  pBio(){
     //create div to display bio
     const bio = document.querySelector("#pet-bio")
     
-    if (info === undefined) {
+    if (this.bio === undefined) {
     //update div innerText with Cat Ipsum gibberish
     bio.innerText = "Peer out window, chatter at birds, lure them to mouth sniff sniff the door is opening! how exciting oh, it's you, meh. Sleep on dog bed, force dog to sleep on floor cats go for world domination and human is washing you why halp oh the horror flee scratch hiss bite for i will ruin the couch with my claws crusty butthole so human clearly uses close to one life a night no one naps that long so i revive by standing on chestawaken! mesmerizing birds..."
     } else{
-      bio.innerText = info
+      bio.innerText = this.bio
     }
   }
 
