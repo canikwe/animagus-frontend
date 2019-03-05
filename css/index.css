@@ -91,3 +91,36 @@ img {
   display: inline-block;
   float: right
 }*/
+
+/* style="justify-content: center;
+align-items: center;" */
+
+/* #main-container .is-fluid .container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+} */
+
+/*Pet Form -- divs*/
+#pet-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 450px;
+  height: 800px;
+}
+
+#pet-form-container h1 {
+  text-align: center;
+}
+
+.label {
+  color: rgb(255, 48, 86);
+  font-family: 'Acme', sans-serif;
+}
+
+#create-pet {
+  color: rgb(255, 48, 86);
+  font-family: 'Prompt', sans-serif;
+}
