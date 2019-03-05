@@ -1,10 +1,9 @@
 class Adapter {
+  
   static getPet(id){
-    fetch(`${Adapter.baseUrl}/${id}`)
+    return fetch(`${Adapter.baseUrl}/${id}`)
     .then(res => res.json())
-    .then(pet => {
-      const newPet = new Pet(pet)
-    })
+
   }
 }
 
