@@ -6,6 +6,16 @@ class Adapter {
       const newPet = new Pet(pet)
     })
   }
+
+  //Post new pet to the backend database
+  static createPet(body) {
+    return fetch(`${Adapter.baseUrl}`, {
+      method: "POST",
+      mode: 'cors',
+      body: JSON.stringify(body),
+      headers: Adapter.headers
+    }).then(res => res.json())
+  }
 }
 
 Adapter.baseUrl = `http://localhost:3000/api/v1/pets`
