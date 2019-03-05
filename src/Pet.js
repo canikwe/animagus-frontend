@@ -10,7 +10,8 @@ class Pet {
     Pet.all.push(this)
   }
 
-
+///////////////////////////////////////////////////////////////////
+//Kyle's super awesome pseudocode:
   happinessUp(characteristicName) {
     const char = this.characteristics.find(char => {
       return char.name === characteristicName
@@ -19,7 +20,7 @@ class Pet {
     if (this.happiness > 100) {
       this.happiness = 100
     }
-    console.log(this.happiness)
+    console.log(`happinessUp(): ${this.happiness}`)
   }
 
   happinessDown(characteristicName) {
@@ -30,44 +31,13 @@ class Pet {
     if (this.happiness < 0) {
       this.happiness = 0
     }
-    console.log(this.happiness)
+    console.log(`happinessDown(): ${this.happiness}`)
   }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//:End Kyle's super awesome pseudocode
+////////////////////////////////////////////////////////////
   pName(){
     //create h4 element to display pet name
     const h4 = document.createElement('h4')
