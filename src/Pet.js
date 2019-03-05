@@ -6,6 +6,7 @@ class Pet {
     this.happiness = petObj.happiness
     this.image = petObj.image
     this.bio = petObj.bio
+    this.kill_clock = petObj.kill_clock
     this.active_status = petObj.active_status
     this.characteristics = petObj.characteristics
     Pet.all.push(this)
@@ -84,9 +85,19 @@ class Pet {
 
 
 
-
-
-
+  
+  
+  pKill(){
+    const killTime = new Date(this.kill_clock)
+    if (Date.now() >= killTime) {
+      alert("You dead, son")
+      clearInterval(this.killInterval)
+      const data = {active_status: "inactive"}
+      this.active_status = "inactive"
+      Adapter.updatePetDB(this.id, data)
+    }
+  }
+  
 
 
   pName(){
@@ -197,6 +208,8 @@ class Pet {
 
     //update body's innerHTML with renered pet info
     this.updateDOM()
+    this.killInterval = setInterval(() => this.pKill(), 5000)
+
   }
 
   updateDOM(){
