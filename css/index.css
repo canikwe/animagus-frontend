@@ -11,7 +11,7 @@ h1 {
   background-color: #209cee;
 }
 
-#happiness-div {
+#happiness {
   vertical-align: middle;
   font-size: 6rem;
   text-align: center;
@@ -21,6 +21,10 @@ h1 {
 
 .box {
   background-color: #fce177;
+}
+
+.button {
+  margin-right: 15px;
 }
 
 

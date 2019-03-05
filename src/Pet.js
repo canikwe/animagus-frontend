@@ -5,12 +5,14 @@ class Pet {
     this.age = petObj.age
     this.happiness = petObj.happiness
     this.image = petObj.image
+    this.bio = petObj.bio
     this.active_status = petObj.active_status
     this.characteristics = petObj.characteristics
     Pet.all.push(this)
   }
 
-
+///////////////////////////////////////////////////////////////////
+//Kyle's super awesome pseudocode:
   happinessUp(characteristicName) {
     const char = this.characteristics.find(char => {
       return char.name === characteristicName
@@ -19,7 +21,7 @@ class Pet {
     if (this.happiness > 100) {
       this.happiness = 100
     }
-    console.log(this.happiness)
+    console.log(`happinessUp(): ${this.happiness}`)
   }
 
   happinessDown(characteristicName) {
@@ -30,8 +32,27 @@ class Pet {
     if (this.happiness < 0) {
       this.happiness = 0
     }
-    console.log(this.happiness)
+    console.log(`happinessDown(): ${this.happiness}`)
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -69,92 +90,60 @@ class Pet {
 
 
   pName(){
-    //create h4 element to display pet name
-    const h4 = document.createElement('h4')
-
-    //update innerText with pet name and return
-    h4.innerText = this.name
-    return h4
+    //update main pet name with rendered pet
+    document.querySelector("#pet-name").innerText = this.name
   }
 
   pStats(){
-    //create p element to display pet stats
-    const p = document.createElement('p')
-
-    //update innerText with pet stats and return
-    p.innerText = `${this.age} | ${this.active_status} | ${this.happiness}`
-    return p
+    //update pet stats with info about rendered pet
+    document.querySelector("#pet-stats").innerText = `Age: ${this.age} | Status: ${this.active_status} | Happiness Level: ${this.happiness}`
   }
 
   pImg(){
-    //create img element to display pet picture
-    const img = document.createElement('img')
-
-    //update image source and return
-    img.src = this.image
-    return img
+    //update main pet image
+    document.querySelector("#pet-pic").src = this.image
   }
 
-  pBio(){
+  pBio(info){
     //create div to display bio
-    const div = document.createElement('div')
+    const bio = document.querySelector("#pet-bio")
 
+    if (this.bio === undefined) {
     //update div innerText with Cat Ipsum gibberish
-    div.innerText = "Peer out window, chatter at birds, lure them to mouth sniff sniff the door is opening! how exciting oh, it's you, meh. Sleep on dog bed, force dog to sleep on floor cats go for world domination and human is washing you why halp oh the horror flee scratch hiss bite for i will ruin the couch with my claws crusty butthole so human clearly uses close to one life a night no one naps that long so i revive by standing on chestawaken! mesmerizing birds..."
-
-    //return div to render later
-    return div
+    bio.innerText = "Peer out window, chatter at birds, lure them to mouth sniff sniff the door is opening! how exciting oh, it's you, meh. Sleep on dog bed, force dog to sleep on floor cats go for world domination and human is washing you why halp oh the horror flee scratch hiss bite for i will ruin the couch with my claws crusty butthole so human clearly uses close to one life a night no one naps that long so i revive by standing on chestawaken! mesmerizing birds..."
+    } else{
+      bio.innerText = this.bio
+    }
   }
 
-  petScore() {
-    //create div element to contain happiness info
-    const div = document.createElement('div')
+  pHappiness(newScore) {
+    //update div displaying pet happiness with new score of instantiated pet happiness if new score is undefined
+    const div = document.querySelector("#happiness")
 
-    //update innerText and add class for .css changes
-    div.innerText = this.happiness
-    div.id = "score"
+    if (newScore === undefined) {
+      div.innerText = this.happiness
+    } else {
+      div.innerText = newScore
+    }
 
-    return div
-  }
-
-  petDiv() {
-    //create individual pet div
-    const petDiv = document.querySelector('#pet-container')
-    const div = document.createElement('div')
-
-    //append pet name and stats to div and append div to the DOM
-    div.append(this.pName(), this.pStats(), this.pBio(), this.petScore())
-    petDiv.append(div)
-    
   }
 
   controlPanel() {
-    //create buttons
-    const ctrlPanel = document.querySelector('#control-panel')
-    const feedBtn = document.createElement('button')
-    const thirstBtn = document.createElement('button')
-    const sleepBtn = document.createElement('button')
+    //update control panel
+    const ctrlPanel = document.querySelector("#control-panel")
 
-    feedBtn.className = 'btn btn-secondary'
-    feedBtn.innerText = "Feed"
-    thirstBtn.className = 'btn btn-secondary'
-    thirstBtn.innerText = "Give Water"
-    sleepBtn.className = 'btn btn-secondary'
-    sleepBtn.innerText = "Sleep"
-
-
-    ctrlPanel.append(feedBtn, thirstBtn, sleepBtn)
-
-  }
-
-  render() {
-    //append pet image to the DOM and populate the pet container with the pet
-    document.querySelector('#pet-picture').append(this.pImg())
-    this.petDiv()
-    this.controlPanel()
+    //create action buttons for each characterstic
+  this.characteristics.forEach(characteristic => {
+      const a = document.createElement("a")
+        a.classList = "button is-link"
+        a.innerText = characteristic.action
+    //append buttons to control panel div
+        ctrlPanel.append(a)
+    })
   }
 
   showSkeletonBody(){
+    //skeleton of show page to display the proper divs
     document.querySelector("#main-container").innerHTML =
       `
    <div class="tile is-ancestor">
@@ -186,18 +175,18 @@ class Pet {
                   <div id="pet-stats">Age: 2 | Breed: Dog | Something Else</div>
 
                   <p class="subtitle">Bio:</p>
-                  <p>
+                  <p id="pet-bio">
                     <!-- Content -->
                     Side-eyes your "jerk" other hand while being petted dream about hunting birds or meowing non stop for food or the cat was chasing the mouse. Cat cat moo moo lick ears lick paws. Flee in terror at cucumber discovered on floor. Ooh, are those your $250 dollar sandals? lemme use that as my litter box roll over and sun my belly hiss at vacuum cleaner cats woo.
                   </p>
               </div>
-                  <div class="tile is-child box" id="happiness">
+                  <div class="tile is-child box">
                   <p class="title">Happiness</p>
                   <p class="subtitle" id="level">Level: </p>
 
                     <!-- Content -->
                     <article class="tile is-child notification box">
-                      <div id="happiness-div" class="is-4by3">
+                      <div id="happiness" class="is-4by3">
                         50
                       </div>
                     </article>
@@ -206,36 +195,25 @@ class Pet {
             </div>
           </div>`
 
+    //update body's innerHTML with renered pet info
     this.updateDOM()
   }
 
   updateDOM(){
-    document.querySelector("#pet-pic").src = this.image
+    this.pName()
 
-    //create p element to display pet stats
-    const p = document.createElement('p')
+    this.pImg()
 
-    //update innerText with pet stats and return
-    p.innerText = `${this.age} | ${this.active_status} | ${this.happiness}`
+    this.pStats()
 
-    document.querySelector("#pet-stats").append(p)
+    this.pBio()
 
-    //update control panel
-    const ctrlPanel = document.querySelector("#control-panel")
-//    debugger
-    this.characteristics.forEach(characteristic => {
-      const a = document.createElement("a")
-        a.classList = "button is-primary"
-        a.innerText = characteristic.action
+    this.controlPanel()
 
-        ctrlPanel.append(a)
-    })
-
-//    debugger
+    this.pHappiness()
   }
 
 }
 
-
-
+//contains all instantiated pets
 Pet.all = []
