@@ -1,10 +1,10 @@
 class PetController{
 
-  static currentPet(){
-    Adapter.getPet(1)
+  static currentPet(id){
+    Adapter.getPet(id)
     .then(petObj => {
     const newPet = new Pet(petObj)
-//    newPet.bulmerBody()
+    newPet.showSkeletonBody()
     })
 
   }
@@ -55,8 +55,7 @@ function handleFormSubmit(event) {
   }
   Adapter.createPet(body).then(newPet => {
     console.log(newPet)
-    document.querySelectorAll('input')[0].value = ''
-    document.querySelectorAll('input')[1].value = ''
-    document.querySelectorAll('input')[2].value = ''
+    newPet = new Pet(newPet)
+    newPet.showSkeletonBody()
   })
 }
