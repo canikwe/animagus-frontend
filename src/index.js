@@ -32,12 +32,24 @@ function init() {
   function startCounter() {
     Pet.all.forEach(pet => {
       pet.characteristics.forEach(characteristic => {
-        pet[`${characteristic.name}interval`] = () => {setInterval(pet.happinessDown(characteristic.name), 5000)}
-        pet[`${characteristic.name}interval`]()
+        pet[`${characteristic.name}interval`] = setInterval(() => pet.happinessDown(characteristic.name), 5000)
+        // pet[`${characteristic.name}interval`]()
         console.log(`startCounter(): pet: ${pet.name} characteristic: ${characteristic.name} happiness:${pet.happiness}`)
       })
     })
   }
+
+  function startCounterOn(characteristicName, petObj) {
+
+    const charObj = petObj.characteristics.find(characteristic => {
+      return characteristic.name === characteristicName
+    })
+
+    petObj[`${charObj.name}interval`] = setInterval(() => petObj.happinessDown(charObj.name), 5000)
+    // console.log(`startCounter(): pet: ${petObj.name} characteristic: ${charObj.name} happiness:${petObj.happiness}`)
+
+  }
+
 
 
 
