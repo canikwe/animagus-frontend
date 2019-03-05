@@ -236,7 +236,11 @@ class Pet {
   
 }
 
+<<<<<<< HEAD
 
 
 Pet.all = []
 
+=======
+Pet.all = []
+>>>>>>> new_pet_ui
