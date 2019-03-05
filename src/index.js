@@ -32,7 +32,6 @@ function init() {
   function startCounter() {
     Pet.all.forEach(pet => {
       pet.characteristics.forEach(characteristic => {
-        // pet[`${characteristic.name}interval`] = setInterval(pet.happinessDown(characteristic.name), 5000)
         pet[`${characteristic.name}interval`] = () => {setInterval(pet.happinessDown(characteristic.name), 5000)}
         pet[`${characteristic.name}interval`]()
         console.log(`startCounter(): pet: ${pet.name} characteristic: ${characteristic.name} happiness:${pet.happiness}`)
