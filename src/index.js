@@ -39,6 +39,11 @@ function init() {
     })
   }
 
+  function testClear() {
+    clearInterval(testInterval);
+  }
+
+
   function startCounterOn(characteristicName, petObj) {
 
     const charObj = petObj.characteristics.find(characteristic => {
@@ -48,11 +53,4 @@ function init() {
     petObj[`${charObj.name}interval`] = setInterval(() => petObj.happinessDown(charObj.name), 5000)
     // console.log(`startCounter(): pet: ${petObj.name} characteristic: ${charObj.name} happiness:${petObj.happiness}`)
 
-  }
-
-
-
-
-  function testClear() {
-    clearInterval(testInterval);
   }
