@@ -10,7 +10,8 @@ class Pet {
     Pet.all.push(this)
   }
 
-
+///////////////////////////////////////////////////////////////////
+//Kyle's super awesome pseudocode:
   happinessUp(characteristicName) {
     const char = this.characteristics.find(char => {
       return char.name === characteristicName
@@ -19,7 +20,7 @@ class Pet {
     if (this.happiness > 100) {
       this.happiness = 100
     }
-    console.log(this.happiness)
+    console.log(`happinessUp(): ${this.happiness}`)
   }
 
   happinessDown(characteristicName) {
@@ -30,7 +31,7 @@ class Pet {
     if (this.happiness < 0) {
       this.happiness = 0
     }
-    console.log(this.happiness)
+    console.log(`happinessDown(): ${this.happiness}`)
   }
 
 
@@ -86,7 +87,7 @@ class Pet {
   pBio(info){
     //create div to display bio
     const bio = document.querySelector("#pet-bio")
-    
+
     if (info === undefined) {
     //update div innerText with Cat Ipsum gibberish
     bio.innerText = "Peer out window, chatter at birds, lure them to mouth sniff sniff the door is opening! how exciting oh, it's you, meh. Sleep on dog bed, force dog to sleep on floor cats go for world domination and human is washing you why halp oh the horror flee scratch hiss bite for i will ruin the couch with my claws crusty butthole so human clearly uses close to one life a night no one naps that long so i revive by standing on chestawaken! mesmerizing birds..."
@@ -98,7 +99,7 @@ class Pet {
   pHappiness(newScore) {
     //update div displaying pet happiness with new score of instantiated pet happiness if new score is undefined
     const div = document.querySelector("#happiness")
-    
+
     if (newScore === undefined) {
       div.innerText = this.happiness
     } else {
@@ -110,7 +111,7 @@ class Pet {
   controlPanel() {
     //update control panel
     const ctrlPanel = document.querySelector("#control-panel")
-  
+
     //create action buttons for each characterstic
   this.characteristics.forEach(characteristic => {
       const a = document.createElement("a")
@@ -180,15 +181,15 @@ class Pet {
 
   updateDOM(){
     this.pName()
-    
+
     this.pImg()
 
     this.pStats()
-    
+
     this.pBio()
 
     this.controlPanel()
-    
+
     this.pHappiness()
   }
 
