@@ -9,6 +9,17 @@ class PetController{
 
   }
 
+  static manyPets(){
+    Adapter.getPaaaiid()
+    .then(petObj => {
+      petObj.forEach(pet => new Pet(pet))
+//heeeeyyyyyy
+}).then(() => renderAllPetButtons())
+
+  }
+
+
+
 
 
 

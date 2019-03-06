@@ -4,6 +4,11 @@ class Adapter {
     return fetch(`${Adapter.baseUrl}/${id}`)
     .then(res => res.json())
   }
+//pull all the pets from the deebee
+  static getPaaaiid(){
+    return fetch(`${Adapter.baseUrl}/`)
+    .then(res => res.json())
+  }
 
   //Post new pet to the backend database
   static createPet(body) {

@@ -3,10 +3,21 @@ document.addEventListener("DOMContentLoaded", init)
 function init() {
    PetController.renderPetForm()
    PetController.attachEventListeners()
+   PetController.manyPets()
+   // renderAllPetButtons()
+
 //  PetController.currentPet()
 }
-
-
+//sweet function to render some sweet buttOns
+function renderAllPetButtons() {
+  Pet.all.forEach(pet => {
+    const sweetButton = document.createElement('button')
+    sweetButton.innerText = pet.name
+    sweetButton.addEventListener('click', () => pet.showSkeletonBody())
+    const div = document.querySelector('#show-pet-buttons')
+    div.appendChild(sweetButton)
+  })
+}
 
   function testFunction() {
 
