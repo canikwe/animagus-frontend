@@ -107,8 +107,7 @@ align-items: center;" */
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 450px;
-  height: 800px;
+  width: 900px;
 }
 
 #pet-form-container h1 {
@@ -123,4 +122,26 @@ align-items: center;" */
 #create-pet {
   color: rgb(255, 48, 86);
   font-family: 'Prompt', sans-serif;
+}
+
+#dog-form {
+  height: 702.16px;
+}
+
+#area {
+  height: 132px;
+}
+
+#animagus-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 900px;
+}
+
+#animagus {
+  text-align: center;
+  font-family: 'Russo One', sans-serif;
+  font-size: 4em;
+  text-shadow: 4px 4px 4px #7a7a7aed;
 }

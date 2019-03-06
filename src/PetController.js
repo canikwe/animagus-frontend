@@ -26,9 +26,18 @@ class PetController{
     document.querySelector('#main-container').innerHTML = `
                                                       <div class="container" id='pet-form-container'>
                                                       <div class="tile is-parent">
+                                                        <article class="tile is-child notification is-info">
+                                                          <p class="title">Make a pet...</p>
+                                                          <p class="subtitle">...and keep it alive!</p>
+                                                          <figure >
+                                                            <img src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/pembroke-welsh-corgi.jpg">
+                                                          </figure>
+                                                        </article>
+                                                      </div>
+                                                      <div class="tile is-parent" id="dog-form">
                                                       <article class="tile is-child notification is-warning">
                                                       <form id="pet-form">
-                                                      <h1 class="title" id="create-pet ">Create New Pet</h1>
+                                                      <h1 class="title" id="create-pet">Create New Pet</h1>
                                                       <div class="field">
                                                       <label class="label is-large">Name</label>
                                                       <div class="control">
@@ -50,13 +59,13 @@ class PetController{
                                                       <div class="field">
                                                       <label class="label is-large">Bio</label>
                                                       <div class="control">
-                                                      <textarea class="input is-large" type="text" placeholder="Enter Pet Bio..."></textarea>
+                                                      <textarea class="input is-large" type="text" placeholder="Enter Pet Bio..." id="area"></textarea>
                                                       </div>
                                                       </div>
                                                       <div class="field">
                                                       <div class="control">
                                                         <button class="button is-danger" type="submit">
-                                                          Submit Pet
+                                                          Submit Pet and Play
                                                         </button>
                                                       </div>
                                                       </div>
