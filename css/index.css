@@ -125,7 +125,11 @@ align-items: center;" */
 }
 
 #dog-form {
-  height: 702.16px;
+  height: 505px;
+}
+
+#make-a-pet {
+  height: 505px;
 }
 
 #area {
@@ -144,4 +148,45 @@ align-items: center;" */
   font-family: 'Russo One', sans-serif;
   font-size: 4em;
   text-shadow: 4px 4px 4px #7a7a7aed;
+}
+
+#gallery-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 900px;
+}
+
+#gallery {
+  text-align: center;
+  font-size: 3em;
+  font-family: 'Prompt', sans-serif;
+}
+
+.pet-image {
+  width: 250px;
+}
+
+.pet-gallery {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 810px;
+}
+
+#skeleton {
+  width: 876px;
+}
+
+button.pet.button.is-warning {
+  color: rgb(28, 146, 235);
+  font-family: 'Russo One', sans-serif;
+  font-size: 1.5em;
+}
+
+img#pet-pic {
+  width: 250px;
+  height: 250px;
+  left: 150px;
+  top: 50px;
 }

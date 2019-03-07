@@ -11,9 +11,12 @@ function init() {
 
 //sweet function to render all pets to show-pet-buttons div
 function renderAllPetButtons() {
-  Pet.all.forEach(pet => {
+  Pet.all.sort(function (a,b) {return a.id - b.id}).forEach(pet => {
     const petBtn = document.createElement('button')
     petBtn.innerText = pet.name
+    petBtn.classList.add("button")
+    petBtn.classList.add("is-warning")
+    petBtn.classList.add("pet")
     petBtn.addEventListener('click', () => pet.showSkeletonBody())
     const div = document.querySelector('#show-pet-buttons')
     div.appendChild(petBtn)

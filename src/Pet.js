@@ -86,8 +86,8 @@ class Pet {
 
 
 
-  
-  
+
+
   pKill(){
     const killTime = new Date(this.kill_clock)
     if (Date.now() >= killTime) {
@@ -98,7 +98,7 @@ class Pet {
       Adapter.updatePetDB(this.id, data)
     }
   }
-  
+
 
 
   pName(){
@@ -164,6 +164,7 @@ class Pet {
     //skeleton of show page to display the proper divs
     document.querySelector("#main-container").innerHTML =
       `
+  <div class="container" id="skeleton">
    <div class="tile is-ancestor">
         <div class="tile is-vertical is-8">
           <div class="tile">
@@ -208,7 +209,7 @@ class Pet {
                         50
                       </div>
                     </article>
-
+                </div>
               </div>
             </div>
           </div>`
@@ -234,7 +235,7 @@ class Pet {
 
     this.pHappiness()
   }
-  
+
   petHappiness(hapInterval) {
 
 
@@ -245,7 +246,7 @@ class Pet {
       this.happiness += 10
 
     }
-    
+
     //update DOM with new happiness score
     this.pHappiness(this.happiness)
 
@@ -258,17 +259,17 @@ class Pet {
       clearInterval(hapInterval)
       console.log("you have won")
     }
-    
+
     //enable hunger button and set fed? to false
     document.querySelector("#Hunger").disabled = false
     this.fed = false
-    
+
     const data = {active_status: this.active_status, happiness: this.happiness}
     Adapter.updatePetDB(this.id, data)
   }
-  
-  
-  
+
+
+
 
 }
 
