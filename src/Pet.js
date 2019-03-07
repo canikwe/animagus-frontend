@@ -9,6 +9,7 @@ class Pet {
     this.kill_clock = petObj.kill_clock
     this.active_status = petObj.active_status
     this.characteristics = petObj.characteristics
+    this.fed = "false"
     Pet.all.push(this)
   }
 
@@ -145,9 +146,15 @@ class Pet {
 
     //create action buttons for each characterstic
   this.characteristics.forEach(characteristic => {
-      const a = document.createElement("a")
+      const a = document.createElement("button")
         a.classList = "button is-link"
         a.innerText = characteristic.action
+        a.id = characteristic.name
+        a.disabled = true
+        a.addEventListener("click", () => {
+          a.disabled = true
+          this.fed = true
+        })
     //append buttons to control panel div
         ctrlPanel.append(a)
     })
@@ -208,7 +215,9 @@ class Pet {
 
     //update body's innerHTML with renered pet info
     this.updateDOM()
-    this.killInterval = setInterval(() => this.pKill(), 5000)
+    //enable hunger button
+    document.querySelector("#Hunger").disabled = false
+    let hapInterval = setInterval(() => this.petHappiness(hapInterval), 20000)
 
   }
 
@@ -225,6 +234,41 @@ class Pet {
 
     this.pHappiness()
   }
+  
+  petHappiness(hapInterval) {
+
+
+    //check if pet is fed to change happiness
+    if (this.fed === false || this.fed === "false") {
+      this.happiness -= 10
+    } else if (this.fed === true || this.fed === "true") {
+      this.happiness += 10
+
+    }
+    
+    //update DOM with new happiness score
+    this.pHappiness(this.happiness)
+
+    //kill pet or win the game
+    if (this.happiness === 0) {
+      this.active_status = "inactive"
+      clearInterval(hapInterval)
+      console.log("you have died")
+    } else if (this.happiness === 100) {
+      clearInterval(hapInterval)
+      console.log("you have won")
+    }
+    
+    //enable hunger button and set fed? to false
+    document.querySelector("#Hunger").disabled = false
+    this.fed = false
+    
+    const data = {active_status: this.active_status, happiness: this.happiness}
+    Adapter.updatePetDB(this.id, data)
+  }
+  
+  
+  
 
 }
 

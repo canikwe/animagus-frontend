@@ -23,8 +23,8 @@ class Adapter {
     headers: Adapter.headers,
     body: JSON.stringify(data)
   })
-  .then(res => res.json())
-  .then(console.log)
+//  .then(res => res.json())
+//  .then(console.log)
 
   }
 }
