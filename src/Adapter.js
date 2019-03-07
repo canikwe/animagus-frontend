@@ -4,8 +4,8 @@ class Adapter {
     return fetch(`${Adapter.baseUrl}/${id}`)
     .then(res => res.json())
   }
-//pull all the pets from the deebee
-  static getPaaaiid(){
+//fetch all pets from the deebee
+  static getAllPets(){
     return fetch(`${Adapter.baseUrl}/`)
     .then(res => res.json())
   }

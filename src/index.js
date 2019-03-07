@@ -8,14 +8,15 @@ function init() {
 
 //  PetController.currentPet()
 }
-//sweet function to render some sweet buttOns
+
+//sweet function to render all pets to show-pet-buttons div
 function renderAllPetButtons() {
   Pet.all.forEach(pet => {
-    const sweetButton = document.createElement('button')
-    sweetButton.innerText = pet.name
-    sweetButton.addEventListener('click', () => pet.showSkeletonBody())
+    const petBtn = document.createElement('button')
+    petBtn.innerText = pet.name
+    petBtn.addEventListener('click', () => pet.showSkeletonBody())
     const div = document.querySelector('#show-pet-buttons')
-    div.appendChild(sweetButton)
+    div.appendChild(petBtn)
   })
 }
 

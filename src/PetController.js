@@ -10,11 +10,11 @@ class PetController{
   }
 
   static manyPets(){
-    Adapter.getPaaaiid()
+    //instantiate all pets from database
+    Adapter.getAllPets()
     .then(petObj => {
       petObj.forEach(pet => new Pet(pet))
-//heeeeyyyyyy
-}).then(() => renderAllPetButtons())
+    }).then(() => renderAllPetButtons())
 
   }
 
