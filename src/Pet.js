@@ -165,8 +165,7 @@ class Pet {
         this.petWinner()
         clearInterval(hapInterval)
         console.log("you have won")
-//        const petData = {happiness: this.happiness}
-//        Adapter.updatePetDB(this.id, petData)
+
       } else {
         this.pet_characteristics.forEach(char => {
           this.checkCharacteristic(char.name, char.action_time, char.action_status, char.interval, hapInterval)
@@ -197,8 +196,8 @@ class Pet {
   }
 
   petDead() {
-    if (document.querySelector('#pet-pic').src !== 'https://image.shutterstock.com/image-vector/skull-crossbones-vector-260nw-1200112360.jpg') {
-      document.querySelector('#pet-pic').src = 'https://image.shutterstock.com/image-vector/skull-crossbones-vector-260nw-1200112360.jpg'
+    if (document.querySelector('#pet-pic').src !== 'http://pixelartmaker.com/art/06f25f9479449a7.png') {
+      document.querySelector('#pet-pic').src = 'http://pixelartmaker.com/art/06f25f9479449a7.png'
 
     }
     const buttons = document.querySelectorAll('button')
@@ -209,8 +208,8 @@ class Pet {
   }
 
   petWinner() {
-    if (document.querySelector('#pet-pic').src !== 'http://www.truckclipart.com/free_truck_clipart/clip_art_image_of_a_gold_cup_trophy_0515-1104-2101-4455_SMU.jpg') {
-      document.querySelector('#pet-pic').src = 'http://www.truckclipart.com/free_truck_clipart/clip_art_image_of_a_gold_cup_trophy_0515-1104-2101-4455_SMU.jpg'
+    if (document.querySelector('#pet-pic').src !== 'http://pixelartmaker.com/art/370cf504dd15b00.png') {
+      document.querySelector('#pet-pic').src = 'http://pixelartmaker.com/art/370cf504dd15b00.png'
 
     }
     const buttons = document.querySelectorAll('button')
@@ -223,7 +222,7 @@ class Pet {
   checkCharacteristic(char, timeName, status, newInterval, hapInterval){
 
     this.pet_characteristics.forEach(characteristic => { 
-//      
+//      debugger
       if (characteristic.name === char) {
         this[timeName] = new Date(characteristic.calculate_check_time)
         
