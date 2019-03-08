@@ -220,6 +220,9 @@ class Pet {
     document.querySelector("#Hunger").disabled = false
     let hapInterval = setInterval(() => this.petHappiness(hapInterval), 20000)
 
+    const buttonThing = document.querySelector('#show-pet-buttons')
+    buttonThing.innerHTML = ''
+
   }
 
   updateDOM(){
@@ -236,15 +239,41 @@ class Pet {
     this.pHappiness()
   }
 
+  petDead() {
+    if (document.querySelector('#pet-pic').src !== 'https://image.shutterstock.com/image-vector/skull-crossbones-vector-260nw-1200112360.jpg') {
+      document.querySelector('#pet-pic').src = 'https://image.shutterstock.com/image-vector/skull-crossbones-vector-260nw-1200112360.jpg'
+
+    }
+    const buttons = document.querySelectorAll('button')
+    buttons.forEach(button => button.disabled = true)
+    document.querySelector('#happiness').innerText = 'Dead'
+    // debugger;
+
+  }
+
+  petWinner() {
+    if (document.querySelector('#pet-pic').src !== 'http://www.truckclipart.com/free_truck_clipart/clip_art_image_of_a_gold_cup_trophy_0515-1104-2101-4455_SMU.jpg') {
+      document.querySelector('#pet-pic').src = 'http://www.truckclipart.com/free_truck_clipart/clip_art_image_of_a_gold_cup_trophy_0515-1104-2101-4455_SMU.jpg'
+
+    }
+    const buttons = document.querySelectorAll('button')
+    buttons.forEach(button => button.disabled = true)
+    document.querySelector('#happiness').innerText = 'Won'
+    // debugger;
+
+  }
+
   petHappiness(hapInterval) {
 
-
     //check if pet is fed to change happiness
-    if (this.fed === false || this.fed === "false") {
-      this.happiness -= 10
-    } else if (this.fed === true || this.fed === "true") {
-      this.happiness += 10
+    if (this.happiness > 0 && this.happiness < 100) {
 
+      if (this.fed === false || this.fed === "false") {
+        this.happiness -= 10
+      } else if (this.fed === true || this.fed === "true") {
+        this.happiness += 10
+
+      }
     }
 
     //update DOM with new happiness score
@@ -252,17 +281,21 @@ class Pet {
 
     //kill pet or win the game
     if (this.happiness === 0) {
+      this.petDead()
       this.active_status = "inactive"
       clearInterval(hapInterval)
       console.log("you have died")
     } else if (this.happiness === 100) {
+      this.petWinner()
       clearInterval(hapInterval)
       console.log("you have won")
     }
 
     //enable hunger button and set fed? to false
+    if (this.happiness > 0 && this.happiness < 100){
     document.querySelector("#Hunger").disabled = false
     this.fed = false
+    }
 
     const data = {active_status: this.active_status, happiness: this.happiness}
     Adapter.updatePetDB(this.id, data)

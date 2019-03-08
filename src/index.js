@@ -4,7 +4,7 @@ function init() {
    PetController.renderPetForm()
    PetController.attachEventListeners()
    PetController.manyPets()
-   // renderAllPetButtons()
+   //renderAllPetButtons()
 
 //  PetController.currentPet()
 }

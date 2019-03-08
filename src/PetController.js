@@ -163,6 +163,8 @@ function handleFormSubmit(event) {
     newPet = new Pet(newPet)
     newPet.showSkeletonBody()
   })
+  const buttonThing = document.querySelector('#show-pet-buttons')
+  buttonThing.innerHTML = ''
 }
 
 function handleClickOfPetImage(event) {
