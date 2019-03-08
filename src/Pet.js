@@ -17,11 +17,8 @@ class Pet {
   }
 
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> tweak_intervals
   ///////////// Methods /////////////
   createChars(petObj){
   //method to dynamically create characteristic times and statuses
@@ -227,13 +224,8 @@ class Pet {
 
   checkCharacteristic(char, timeName, status, newInterval, hapInterval){
 
-<<<<<<< HEAD
     this.pet_characteristics.forEach(characteristic => {
 //
-=======
-    this.pet_characteristics.forEach(characteristic => { 
-//      debugger
->>>>>>> tweak_intervals
       if (characteristic.name === char) {
         this[timeName] = new Date(characteristic.calculate_check_time)
 
