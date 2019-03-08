@@ -40,8 +40,8 @@ class PetController{
                                                         <article class="tile is-child notification is-info">
                                                           <p class="title">Make a pet...</p>
                                                           <p class="subtitle">...and keep it alive!</p>
-                                                          <figure >
-                                                            <img src="https://media.giphy.com/media/igFbTFGo9QN1B6H7Lg/giphy.gif">
+                                                          <figure id="figure" class="container">
+                                                            <img src="https://media.giphy.com/media/igFbTFGo9QN1B6H7Lg/giphy.gif" id="main-pet">
                                                           </figure>
                                                         </article>
                                                       </div>
@@ -70,12 +70,12 @@ class PetController{
                                                       </div>
                                                       </div>
 
-                                                      <!-- <div class="field">
+                                                      <div class="field">
                                                       <label class="label is-large">Bio</label>
                                                       <div class="control">
-                                                      <textarea class="input is-large" type="text" placeholder="Enter Pet Bio..." id="area"></textarea>
+                                                      <textarea class="input is-large" type="text" placeholder="Enter Pet Bio" id="area"></textarea>
                                                       </div>
-                                                      </div> -->
+                                                      </div>
                                                       <div class="field">
                                                       <div class="control">
                                                         <button class="button is-danger" type="submit">
@@ -96,7 +96,7 @@ class PetController{
                                                         <button id="pet-button-1" data-id="1"><img class="pet-image" id="pet-image-1" src="https://thumbs.gfycat.com/ImpracticalWelcomeAndalusianhorse-small.gif"></button>
                                                         <button id="pet-button-2" data-id="2"><img class="pet-image" id="pet-image-2" src="https://i.imgur.com/dyW49tc.gif"></button>
                                                         <button id="pet-button-3" data-id="3"><img class="pet-image" id="pet-image-3" src="https://media1.giphy.com/media/10RgZyfaX0HBSg/giphy.gif"></button>
-                                                        <button id="pet-button-4" data-id="4"><img class="pet-image" id="pet-image-4" src="https://cdn2.scratch.mit.edu/get_image/gallery/3705355_200x130.png"></button>
+                                                        <button id="pet-button-4" data-id="4"><img class="pet-image" id="pet-image-4" src="https://data.whicdn.com/images/129470741/original.gif"></button>
                                                         <button id="pet-button-5" data-id="5"><img class="pet-image" id="pet-image-5" src="https://thumbs.gfycat.com/CaringAdorableIrukandjijellyfish-size_restricted.gif"></button>
                                                         </div>
                                                         <div class="container pet-gallery">
@@ -156,7 +156,8 @@ function handleFormSubmit(event) {
   const body = {
     name: document.querySelectorAll('input')[0].value,
     age: document.querySelectorAll('input')[1].value,
-    image: document.querySelectorAll('input')[2].value
+    image: document.querySelectorAll('input')[2].value,
+    bio: document.querySelector('textarea').value
   }
   Adapter.createPet(body).then(newPet => {
     console.log(newPet)
@@ -170,4 +171,5 @@ function handleFormSubmit(event) {
 function handleClickOfPetImage(event) {
   let id = parseInt(event.currentTarget.dataset.id)
   document.querySelector("#image-input").value = document.querySelector(`#pet-image-${id}`).src
+  document.querySelector("#main-pet").src = document.querySelector(`#pet-image-${id}`).src
 }

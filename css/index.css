@@ -13,7 +13,7 @@ h1 {
 
 #happiness {
   vertical-align: middle;
-  font-size: 6rem;
+  font-size: 4rem;
   text-align: center;
   text-shadow: 2px 2px 2px #7a7a7aed;
   justify-content:flex-start;
@@ -129,7 +129,7 @@ align-items: center;" */
 }
 
 #make-a-pet {
-  height: 505px;
+  height: 630px;
 }
 
 #area {
@@ -189,4 +189,25 @@ img#pet-pic {
   height: 250px;
   left: 150px;
   top: 50px;
+}
+
+#figure {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 540px;
+}
+
+#main-pet {
+  width: 250px;
+  height: 250px;
+}
+
+#stats {
+  width: 276px;
+}
+
+#happi {
+  width: 276px;
 }
