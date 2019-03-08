@@ -1,5 +1,6 @@
 class Pet {
   constructor(petObj){
+    //attributes
     this.id = petObj.id
     this.name = petObj.name
     this.age = petObj.age
@@ -8,33 +9,24 @@ class Pet {
     this.bio = petObj.bio
     this.kill_clock = petObj.kill_clock
     this.active_status = petObj.active_status
-    this.characteristics = petObj.characteristics
-    this.fed = "false"
+    this.pet_characteristics = petObj.pet_characteristics
+    
+    //methods
+    this.createChars(petObj)
     Pet.all.push(this)
   }
 
-///////////////////////////////////////////////////////////////////
-//Kyle's super awesome pseudocode:
-  happinessUp(characteristicName) {
-    const char = this.characteristics.find(char => {
-      return char.name === characteristicName
+
+
+  
+  ///////////// Methods /////////////
+  createChars(petObj){
+  //method to dynamically create characteristic times and statuses
+    petObj.pet_characteristics.forEach(characteristic => {
+      
+      this[characteristic.action_status] = false
+      this[characteristic.action_time] = new Date()
     })
-    this.happiness += char.incr
-    if (this.happiness > 100) {
-      this.happiness = 100
-    }
-    console.log(`happinessUp(): ${this.happiness}`)
-  }
-
-  happinessDown(characteristicName) {
-    const char = this.characteristics.find(char => {
-      return char.name === characteristicName
-    })
-    this.happiness -= char.decr
-    if (this.happiness < 0) {
-      this.happiness = 0
-    }
-    console.log(`happinessDown(): ${this.happiness}`)
   }
 
 
@@ -86,18 +78,6 @@ class Pet {
 
 
 
-
-
-  pKill(){
-    const killTime = new Date(this.kill_clock)
-    if (Date.now() >= killTime) {
-      alert("You dead, son")
-      clearInterval(this.killInterval)
-      const data = {active_status: "inactive"}
-      this.active_status = "inactive"
-      Adapter.updatePetDB(this.id, data)
-    }
-  }
 
 
 
@@ -145,15 +125,26 @@ class Pet {
     const ctrlPanel = document.querySelector("#control-panel")
 
     //create action buttons for each characterstic
-  this.characteristics.forEach(characteristic => {
+  this.pet_characteristics.forEach(characteristic => {
       const a = document.createElement("button")
         a.classList = "button is-link"
         a.innerText = characteristic.action
         a.id = characteristic.name
         a.disabled = true
+//    
         a.addEventListener("click", () => {
           a.disabled = true
-          this.fed = true
+          this[characteristic.action_status] = true
+//          
+          this.happiness += characteristic.incr
+          this.pHappiness(this.happiness)
+//          if (characteristic.name === "Hunger") {
+//            this.fed = true
+//          } else if (characteristic.name === "Thirst") {
+//            this.slacked = true
+//          } else if (characteristic.name === "Sleepiness") {
+//            this.slept = true
+//          }
         })
     //append buttons to control panel div
         ctrlPanel.append(a)
@@ -218,7 +209,26 @@ class Pet {
     this.updateDOM()
     //enable hunger button
     document.querySelector("#Hunger").disabled = false
-    let hapInterval = setInterval(() => this.petHappiness(hapInterval), 20000)
+    let hapInterval = setInterval(() => {
+//      
+      if (this.happiness <= 0) {
+        this.petDead()
+        this.active_status = "inactive"
+        clearInterval(hapInterval)
+        console.log("you have died")
+      } else if (this.happiness >= 100) {
+        this.petWinner()
+        clearInterval(hapInterval)
+        console.log("you have won")
+      } else {
+        this.pet_characteristics.forEach(char => {
+          this.checkCharacteristic(char.name, char.action_time, char.action_status, char.interval, hapInterval)
+          
+        })
+
+      }
+    }, 10)
+
 
     const buttonThing = document.querySelector('#show-pet-buttons')
     buttonThing.innerHTML = ''
@@ -263,46 +273,51 @@ class Pet {
 
   }
 
-  petHappiness(hapInterval) {
+  checkCharacteristic(char, timeName, status, newInterval, hapInterval){
 
-    //check if pet is fed to change happiness
-    if (this.happiness > 0 && this.happiness < 100) {
+    this.pet_characteristics.forEach(characteristic => { 
+//      
+      if (characteristic.name === char) {
+        this[timeName] = new Date(characteristic.calculate_check_time)
+        
+//        
+        if ( new Date >= (new Date(this[timeName] - (characteristic.interval/2))) && this[status] === false) {
+          document.getElementById(`${characteristic.name}`).disabled = false
+        }
+//        
+        if (new Date >= this[timeName]) {
+          //check if pet is fed to change happiness
+          if (this[status] === false) {
+            this.happiness -= characteristic.decr
+            this.pHappiness(this.happiness)
+          } else if (this[status] === true ) {
+//            this.happiness += characteristic.incr
+          }
+          
+//          
+          this[status] = false
+          this[timeName] = new Date (Date.now() + newInterval)
+          characteristic.calculate_check_time = this[timeName]
 
-      if (this.fed === false || this.fed === "false") {
-        this.happiness -= 10
-      } else if (this.fed === true || this.fed === "true") {
-        this.happiness += 10
-
+          //patch data back to Pets table
+          const petData = {active_status: this.active_status, happiness: this.happiness}
+          Adapter.updatePetDB(this.id, petData)
+          
+          //patch data back to Pet Characteristics table
+          const petCharData = {check_time: this[timeName]}
+          
+          Adapter.updatePetCharDB(characteristic.id, petCharData)
+//          document.getElementById(`${characteristic.name}`).disabled = false
+          }
+      
+      
+        
+        
       }
+      
     }
-
-    //update DOM with new happiness score
-    this.pHappiness(this.happiness)
-
-    //kill pet or win the game
-    if (this.happiness === 0) {
-      this.petDead()
-      this.active_status = "inactive"
-      clearInterval(hapInterval)
-      console.log("you have died")
-    } else if (this.happiness === 100) {
-      this.petWinner()
-      clearInterval(hapInterval)
-      console.log("you have won")
-    }
-
-    //enable hunger button and set fed? to false
-    if (this.happiness > 0 && this.happiness < 100){
-    document.querySelector("#Hunger").disabled = false
-    this.fed = false
-    }
-
-    const data = {active_status: this.active_status, happiness: this.happiness}
-    Adapter.updatePetDB(this.id, data)
-  }
-
-
-
+  )}
+  
 
 }
 
