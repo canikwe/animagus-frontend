@@ -17,8 +17,11 @@ class Pet {
   }
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> tweak_intervals
   ///////////// Methods /////////////
   createChars(petObj){
   //method to dynamically create characteristic times and statuses
@@ -28,59 +31,7 @@ class Pet {
       this[characteristic.action_time] = new Date()
     })
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
   pName(){
     //update main pet name with rendered pet
     document.querySelector("#pet-name").innerText = this.name
@@ -118,6 +69,9 @@ class Pet {
     } else {
       div.innerText = newScore
     }
+    
+    const petData = {happiness: this.happiness}
+    Adapter.updatePetDB(this.id, petData)
 
   }
 
@@ -125,8 +79,8 @@ class Pet {
     //update control panel
     const ctrlPanel = document.querySelector("#control-panel")
 
-    //create action buttons for each characterstic
-  this.pet_characteristics.forEach(characteristic => {
+    //create action buttons for each characterstic and add event listeners
+    this.pet_characteristics.forEach(characteristic => {
       const a = document.createElement("button")
         a.classList = "button is-link"
         a.innerText = characteristic.action
@@ -139,13 +93,9 @@ class Pet {
 //
           this.happiness += characteristic.incr
           this.pHappiness(this.happiness)
-//          if (characteristic.name === "Hunger") {
-//            this.fed = true
-//          } else if (characteristic.name === "Thirst") {
-//            this.slacked = true
-//          } else if (characteristic.name === "Sleepiness") {
-//            this.slept = true
-//          }
+          
+
+
         })
     //append buttons to control panel div
         ctrlPanel.append(a)
@@ -208,8 +158,8 @@ class Pet {
 
     //update body's innerHTML with renered pet info
     this.updateDOM()
-    //enable hunger button
-    document.querySelector("#Hunger").disabled = false
+//    //enable hunger button
+//    document.querySelector("#Hunger").disabled = false
     let hapInterval = setInterval(() => {
 //
       if (this.happiness <= 0) {
@@ -221,6 +171,7 @@ class Pet {
         this.petWinner()
         clearInterval(hapInterval)
         console.log("you have won")
+
       } else {
         this.pet_characteristics.forEach(char => {
           this.checkCharacteristic(char.name, char.action_time, char.action_status, char.interval, hapInterval)
@@ -251,8 +202,8 @@ class Pet {
   }
 
   petDead() {
-    if (document.querySelector('#pet-pic').src !== 'https://image.shutterstock.com/image-vector/skull-crossbones-vector-260nw-1200112360.jpg') {
-      document.querySelector('#pet-pic').src = 'https://image.shutterstock.com/image-vector/skull-crossbones-vector-260nw-1200112360.jpg'
+    if (document.querySelector('#pet-pic').src !== 'http://pixelartmaker.com/art/06f25f9479449a7.png') {
+      document.querySelector('#pet-pic').src = 'http://pixelartmaker.com/art/06f25f9479449a7.png'
 
     }
     const buttons = document.querySelectorAll('button')
@@ -263,8 +214,8 @@ class Pet {
   }
 
   petWinner() {
-    if (document.querySelector('#pet-pic').src !== 'http://www.truckclipart.com/free_truck_clipart/clip_art_image_of_a_gold_cup_trophy_0515-1104-2101-4455_SMU.jpg') {
-      document.querySelector('#pet-pic').src = 'http://www.truckclipart.com/free_truck_clipart/clip_art_image_of_a_gold_cup_trophy_0515-1104-2101-4455_SMU.jpg'
+    if (document.querySelector('#pet-pic').src !== 'http://pixelartmaker.com/art/370cf504dd15b00.png') {
+      document.querySelector('#pet-pic').src = 'http://pixelartmaker.com/art/370cf504dd15b00.png'
 
     }
     const buttons = document.querySelectorAll('button')
@@ -276,8 +227,13 @@ class Pet {
 
   checkCharacteristic(char, timeName, status, newInterval, hapInterval){
 
+<<<<<<< HEAD
     this.pet_characteristics.forEach(characteristic => {
 //
+=======
+    this.pet_characteristics.forEach(characteristic => { 
+//      debugger
+>>>>>>> tweak_intervals
       if (characteristic.name === char) {
         this[timeName] = new Date(characteristic.calculate_check_time)
 
