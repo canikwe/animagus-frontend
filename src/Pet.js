@@ -17,8 +17,6 @@ class Pet {
   }
 
 
-
-  
   ///////////// Methods /////////////
   createChars(petObj){
   //method to dynamically create characteristic times and statuses
@@ -28,59 +26,7 @@ class Pet {
       this[characteristic.action_time] = new Date()
     })
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
   pName(){
     //update main pet name with rendered pet
     document.querySelector("#pet-name").innerText = this.name
@@ -117,6 +63,9 @@ class Pet {
     } else {
       div.innerText = newScore
     }
+    
+    const petData = {happiness: this.happiness}
+    Adapter.updatePetDB(this.id, petData)
 
   }
 
@@ -124,8 +73,8 @@ class Pet {
     //update control panel
     const ctrlPanel = document.querySelector("#control-panel")
 
-    //create action buttons for each characterstic
-  this.pet_characteristics.forEach(characteristic => {
+    //create action buttons for each characterstic and add event listeners
+    this.pet_characteristics.forEach(characteristic => {
       const a = document.createElement("button")
         a.classList = "button is-link"
         a.innerText = characteristic.action
@@ -138,13 +87,9 @@ class Pet {
 //          
           this.happiness += characteristic.incr
           this.pHappiness(this.happiness)
-//          if (characteristic.name === "Hunger") {
-//            this.fed = true
-//          } else if (characteristic.name === "Thirst") {
-//            this.slacked = true
-//          } else if (characteristic.name === "Sleepiness") {
-//            this.slept = true
-//          }
+          
+
+
         })
     //append buttons to control panel div
         ctrlPanel.append(a)
@@ -207,8 +152,8 @@ class Pet {
 
     //update body's innerHTML with renered pet info
     this.updateDOM()
-    //enable hunger button
-    document.querySelector("#Hunger").disabled = false
+//    //enable hunger button
+//    document.querySelector("#Hunger").disabled = false
     let hapInterval = setInterval(() => {
 //      
       if (this.happiness <= 0) {
@@ -220,6 +165,8 @@ class Pet {
         this.petWinner()
         clearInterval(hapInterval)
         console.log("you have won")
+//        const petData = {happiness: this.happiness}
+//        Adapter.updatePetDB(this.id, petData)
       } else {
         this.pet_characteristics.forEach(char => {
           this.checkCharacteristic(char.name, char.action_time, char.action_status, char.interval, hapInterval)
