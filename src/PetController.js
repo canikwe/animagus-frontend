@@ -41,7 +41,8 @@ class PetController{
                                                           <p class="title">Make a pet...</p>
                                                           <p class="subtitle">...and keep it alive!</p>
                                                           <figure id="figure" class="container">
-                                                            <img src="https://media.giphy.com/media/igFbTFGo9QN1B6H7Lg/giphy.gif" id="main-pet">
+                                                            <img src="images/main_img.gif"
+                                                            id="main-pet" >
                                                           </figure>
                                                         </article>
                                                       </div>
@@ -93,32 +94,32 @@ class PetController{
                                                       <article class="tile is-child notification is-danger">
                                                       <h1 class="title" id="gallery">Pet Gallery</h1>
                                                         <div class="container pet-gallery">
-                                                        <button id="pet-button-1" data-id="1"><img class="pet-image" id="pet-image-1" src="https://thumbs.gfycat.com/ImpracticalWelcomeAndalusianhorse-small.gif"></button>
-                                                        <button id="pet-button-2" data-id="2"><img class="pet-image" id="pet-image-2" src="https://i.imgur.com/dyW49tc.gif"></button>
-                                                        <button id="pet-button-3" data-id="3"><img class="pet-image" id="pet-image-3" src="https://media1.giphy.com/media/10RgZyfaX0HBSg/giphy.gif"></button>
-                                                        <button id="pet-button-4" data-id="4"><img class="pet-image" id="pet-image-4" src="https://data.whicdn.com/images/129470741/original.gif"></button>
-                                                        <button id="pet-button-5" data-id="5"><img class="pet-image" id="pet-image-5" src="https://thumbs.gfycat.com/CaringAdorableIrukandjijellyfish-size_restricted.gif"></button>
+                                                        <button id="pet-button-1" data-id="1"><img class="pet-image" id="pet-image-1" src="images/ImpracticalWelcomeAndalusianhorse-small.gif"></button>
+                                                        <button id="pet-button-2" data-id="2"><img class="pet-image" id="pet-image-2" src="images/dyW49tc.gif"></button>
+                                                        <button id="pet-button-3" data-id="3"><img class="pet-image" id="pet-image-3" src="images/spinning_mario.gif"></button>
+                                                        <button id="pet-button-4" data-id="4"><img class="pet-image" id="pet-image-4" src="images/dolphin.gif"></button>
+                                                        <button id="pet-button-5" data-id="5"><img class="pet-image" id="pet-image-5" src="images/CaringAdorableIrukandjijellyfish-size_restricted.gif"></button>
                                                         </div>
                                                         <div class="container pet-gallery">
-                                                        <button id="pet-button-6" data-id="6"><img class="pet-image" id="pet-image-6" src="https://cdn2.scratch.mit.edu/get_image/gallery/5314106_200x130.png"></button>
-                                                        <button id="pet-button-7" data-id="7"><img class="pet-image" id="pet-image-7" src="https://media.giphy.com/media/XpUcVJLv2YII8/giphy.gif"></button>
-                                                        <button id="pet-button-8" data-id="8"><img class="pet-image" id="pet-image-8" src="https://data.whicdn.com/images/232263957/original.gif"></button>
-                                                        <button id="pet-button-9" data-id="9"><img class="pet-image" id="pet-image-9" src="https://media.giphy.com/media/NMboetGVBoiCk/source.gif"></button>
-                                                        <button id="pet-button-10" data-id="10"><img class="pet-image" id="pet-image-10" src="https://img.fireden.net/v/image/1521/42/1521420066820.gif"></button>
+                                                        <button id="pet-button-6" data-id="6"><img class="pet-image" id="pet-image-6" src="images/CaringAdorableIrukandjijellyfish_pink.png"></button>
+                                                        <button id="pet-button-7" data-id="7"><img class="pet-image" id="pet-image-7" src="images/waving_panda.gif"></button>
+                                                        <button id="pet-button-8" data-id="8"><img class="pet-image" id="pet-image-8" src="images/peek-a-boo.gif"></button>
+                                                        <button id="pet-button-9" data-id="9"><img class="pet-image" id="pet-image-9" src="images/peace_pet.gif"></button>
+                                                        <button id="pet-button-10" data-id="10"><img class="pet-image" id="pet-image-10" src="images/lil_bounce.gif"></button>
                                                         </div>
                                                         <div class="container pet-gallery">
-                                                        <button id="pet-button-11" data-id="11"><img class="pet-image" id="pet-image-11" src="https://art.ngfiles.com/images/762000/762704_rflowers_witch.gif"></button>
-                                                        <button id="pet-button-12" data-id="12"><img class="pet-image" id="pet-image-12" src="https://media.giphy.com/media/NmOoPAu8Mmhkk/giphy.gif"></button>
-                                                        <button id="pet-button-13" data-id="13"><img class="pet-image" id="pet-image-13" src="https://i.pinimg.com/originals/2f/c1/b8/2fc1b8f82e14172e3bcae39ca8c8ab33.gif"></button>
-                                                        <button id="pet-button-14" data-id="14"><img class="pet-image" id="pet-image-14" src="https://i.gifer.com/ZaiM.gif"></button>
-                                                        <button id="pet-button-15" data-id="15"><img class="pet-image" id="pet-image-15" src="https://s-media-cache-ak0.pinimg.com/originals/46/6b/42/466b422c6a1ce24a6c4e20e62832d72a.jpg"></button>
+                                                        <button id="pet-button-11" data-id="11"><img class="pet-image" id="pet-image-11" src="images/rflowers_witch.gif"></button>
+                                                        <button id="pet-button-12" data-id="12"><img class="pet-image" id="pet-image-12" src="images/princess.gif"></button>
+                                                        <button id="pet-button-13" data-id="13"><img class="pet-image" id="pet-image-13" src="images/swinging_blob.gif"></button>
+                                                        <button id="pet-button-14" data-id="14"><img class="pet-image" id="pet-image-14" src="images/mario_and_yoshi.gif"></button>
+                                                        <button id="pet-button-15" data-id="15"><img class="pet-image" id="pet-image-15" src="images/orange_and_black_mario.jpg"></button>
                                                         </div>
                                                         <div class="container pet-gallery">
-                                                        <button id="pet-button-16" data-id="16"><img class="pet-image" id="pet-image-16" src="https://files.gamebanana.com/img/ico/sprays/tanooki_s_ani_icon.gif"></button>
-                                                        <button id="pet-button-17" data-id="17"><img class="pet-image" id="pet-image-17" src="https://thumbs.gfycat.com/AffectionateAdventurousLangur-size_restricted.gif"></button>
-                                                        <button id="pet-button-18" data-id="18"><img class="pet-image" id="pet-image-18" src="https://orig00.deviantart.net/a157/f/2016/026/3/1/bull_man___custom_mega_man_boss_by_daltonkeslar1206-d9pfodm.gif"></button>
-                                                        <button id="pet-button-19" data-id="19"><img class="pet-image" id="pet-image-19" src="https://orig00.deviantart.net/7429/f/2016/252/3/5/propeller_mushroom___super_mario_bros__3_style_by_skyzombie5-dah2z9d.gif"></button>
-                                                        <button id="pet-button-20" data-id="20"><img class="pet-image" id="pet-image-20" src="https://i.imgur.com/da5LLrL.gif"></button>
+                                                        <button id="pet-button-16" data-id="16"><img class="pet-image" id="pet-image-16" src="images/tanooki_s_ani_icon.gif"></button>
+                                                        <button id="pet-button-17" data-id="17"><img class="pet-image" id="pet-image-17" src="images/AffectionateAdventurousLangur-size_restricted.gif"></button>
+                                                        <button id="pet-button-18" data-id="18"><img class="pet-image" id="pet-image-18" src="images/bull_man___custom_mega_man_boss_by_daltonkeslar1206-d9pfodm.gif"></button>
+                                                        <button id="pet-button-19" data-id="19"><img class="pet-image" id="pet-image-19" src="images/propeller_mushroom___super_mario_bros__3_style_by_skyzombie5-dah2z9d.gif"></button>
+                                                        <button id="pet-button-20" data-id="20"><img class="pet-image" id="pet-image-20" src="images/da5LLrL.gif"></button>
                                                         </div>
                                                       </article>
                                                     </div>
