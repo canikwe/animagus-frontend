@@ -16,14 +16,10 @@ class Pet {
     Pet.all.push(this)
   }
 
-
-
-
   ///////////// Methods /////////////
   createChars(petObj){
   //method to dynamically create characteristic times and statuses
     petObj.pet_characteristics.forEach(characteristic => {
-
       this[characteristic.action_status] = false
       this[characteristic.action_time] = new Date()
     })
@@ -66,7 +62,6 @@ class Pet {
     } else {
       div.innerText = newScore
     }
-    
     const petData = {happiness: this.happiness}
     Adapter.updatePetDB(this.id, petData)
 
@@ -90,9 +85,6 @@ class Pet {
 //
           this.happiness += characteristic.incr
           this.pHappiness(this.happiness)
-          
-
-
         })
     //append buttons to control panel div
         ctrlPanel.append(a)
@@ -225,45 +217,36 @@ class Pet {
   checkCharacteristic(char, timeName, status, newInterval, hapInterval){
 
     this.pet_characteristics.forEach(characteristic => {
-//
       if (characteristic.name === char) {
         this[timeName] = new Date(characteristic.calculate_check_time)
 
-//
         if ( new Date >= (new Date(this[timeName] - (characteristic.interval/2))) && this[status] === false) {
           document.getElementById(`${characteristic.name}`).disabled = false
         }
-//
         if (new Date >= this[timeName]) {
           //check if pet is fed to change happiness
           if (this[status] === false) {
             this.happiness -= characteristic.decr
             this.pHappiness(this.happiness)
           } else if (this[status] === true ) {
-//            this.happiness += characteristic.incr
+//          this.happiness += characteristic.incr
           }
 
-//
-          this[status] = false
-          this[timeName] = new Date (Date.now() + newInterval)
-          characteristic.calculate_check_time = this[timeName]
+        this[status] = false
+        this[timeName] = new Date (Date.now() + newInterval)
+        characteristic.calculate_check_time = this[timeName]
 
-          //patch data back to Pets table
-          const petData = {active_status: this.active_status, happiness: this.happiness}
-          Adapter.updatePetDB(this.id, petData)
+        //patch data back to Pets table
+        const petData = {active_status: this.active_status, happiness: this.happiness}
+        Adapter.updatePetDB(this.id, petData)
 
-          //patch data back to Pet Characteristics table
-          const petCharData = {check_time: this[timeName]}
+        //patch data back to Pet Characteristics table
+        const petCharData = {check_time: this[timeName]}
 
-          Adapter.updatePetCharDB(characteristic.id, petCharData)
-//          document.getElementById(`${characteristic.name}`).disabled = false
-          }
-
-
-
-
+        Adapter.updatePetCharDB(characteristic.id, petCharData)
+//      document.getElementById(`${characteristic.name}`).disabled = false
+        }
       }
-
     }
   )}
 
