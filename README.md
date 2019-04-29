@@ -7,24 +7,21 @@ Animagus is a project web application written in Vanilla JavaScript that shows s
 
 ## Installation
 
-Please note, this application requires both the front and backend. Click [here](https://github.com/canikwe/animagus-backend) for instructions on installing and setting up the backend.
+Please note, this application requires both the front and backend. Click [here](https://github.com/canikwe/animagus-backend) for instructions on installing and setting up the backend. **Please follow all backend instructions _before_ proceeding with frontend installation**.
 
-Animagus was styled with [Bulma](https://bulma.io/). Please use the package manager [npm](https://www.npmjs.com/) to install Bulma.
+Animagus is styled with [Bulma](https://bulma.io/). Please use the package manager [npm](https://www.npmjs.com/) to install Bulma.
 
-Once this repository has been cloned onto your computer, cd into the directory and run npm install for styling.
 
-```bash
-npm install
-```
+To start, clone or download the repository to your computer. If you are already in your computer's terminal, cd into the directory. If you are in your computers Finder or Explorer, right-click and select an option to open the directory in your terminal.
 
-Once Bulma has installed successfully, open the index.html file either from the terminal or from your Finder.
+**Make sure you are in the animagus-frontend directory before proceeding to the next step.**
 
-```bash
-open index.html
-```
+Type `npm install` to install all package dependencies.
 
-<img src='https://media.giphy.com/media/mDSPCaFWgttmLZqc2f/giphy.gif'
-      alt='Animagus Demo' />
+Once Bulma has installed successfully, open the index.html file either from the terminal with `open index.html` or from your Finder or Explorer.
+
+#### Homepage:
+![Animagus Demo](https://media.giphy.com/media/mDSPCaFWgttmLZqc2f/giphy.gif)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
