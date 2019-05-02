@@ -162,11 +162,12 @@ function handleFormSubmit(event) {
   }
   Adapter.createPet(body).then(newPet => {
     console.log(newPet)
+    // debugger
     newPet = new Pet(newPet)
     newPet.showSkeletonBody()
   })
-  const buttonThing = document.querySelector('#show-pet-buttons')
-  buttonThing.innerHTML = ''
+  const petBtns = document.querySelector('#show-pet-buttons')
+  petBtns.innerHTML = ''
 }
 
 function handleClickOfPetImage(event) {

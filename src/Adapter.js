@@ -35,6 +35,7 @@ class Adapter {
   
   //Patch pet characteristic update to the database
   static updatePetCharDB(id, data) {
+    // debugger
     fetch(`http://localhost:3000/api/v1/pet_characteristics/${id}`, {
     method: "PATCH",
     mode: 'cors',

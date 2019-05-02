@@ -10,6 +10,7 @@ class Pet {
     this.kill_clock = petObj.kill_clock
     this.active_status = petObj.active_status
     this.pet_characteristics = petObj.pet_characteristics
+    this.session = new Date()
 
     //methods
     this.createChars(petObj)
@@ -19,9 +20,10 @@ class Pet {
   ///////////// Methods /////////////
   createChars(petObj){
   //method to dynamically create characteristic times and statuses
-    petObj.pet_characteristics.forEach(characteristic => {
-      this[characteristic.action_status] = false
-      this[characteristic.action_time] = new Date()
+    petObj.pet_characteristics.forEach(char => {
+      // this[characteristic.action_status] = false
+      char.check_time = new Date(Date.now() + char.interval)
+      // char.action_status = false
     })
   }
   
@@ -54,6 +56,7 @@ class Pet {
   }
 
   pHappiness(newScore) {
+    // debugger
     //update div displaying pet happiness with new score of instantiated pet happiness if new score is undefined
     const div = document.querySelector("#happiness")
 
@@ -62,6 +65,8 @@ class Pet {
     } else {
       div.innerText = newScore
     }
+
+    // debugger
     const petData = {happiness: this.happiness}
     Adapter.updatePetDB(this.id, petData)
 
@@ -77,12 +82,15 @@ class Pet {
         a.classList = "button is-link"
         a.innerText = characteristic.action
         a.id = characteristic.name
-        a.disabled = true
+        a.disabled = characteristic.action_status
 //
         a.addEventListener("click", () => {
           a.disabled = true
-          this[characteristic.action_status] = true
-//
+          //legacy code to delete
+          // this[characteristic.action_status] = true
+
+          characteristic.action_status = true
+          // debugger
           this.happiness += characteristic.incr
           this.pHappiness(this.happiness)
         })
@@ -163,16 +171,16 @@ class Pet {
 
       } else {
         this.pet_characteristics.forEach(char => {
-          this.checkCharacteristic(char.name, char.action_time, char.action_status, char.interval, hapInterval)
+          this.checkCharacteristic(char.name, char.action_time, char.action_status, char.interval, char)
 
         })
 
       }
-    }, 10)
+    }, 5000)
 
 
-    const buttonThing = document.querySelector('#show-pet-buttons')
-    buttonThing.innerHTML = ''
+    const petBtns = document.querySelector('#show-pet-buttons')
+    petBtns.innerHTML = ''
 
   }
 
@@ -214,41 +222,65 @@ class Pet {
 
   }
 
-  checkCharacteristic(char, timeName, status, newInterval, hapInterval){
+  checkCharacteristic(char, timeName, status, newInterval, c){
+    // debugger
 
-    this.pet_characteristics.forEach(characteristic => {
-      if (characteristic.name === char) {
-        this[timeName] = new Date(characteristic.calculate_check_time)
+    if (new Date() >= c.check_time) {
+      document.getElementById(`${c.name}`).disabled = false
 
-        if ( new Date >= (new Date(this[timeName] - (characteristic.interval/2))) && this[status] === false) {
-          document.getElementById(`${characteristic.name}`).disabled = false
-        }
-        if (new Date >= this[timeName]) {
-          //check if pet is fed to change happiness
-          if (this[status] === false) {
-            this.happiness -= characteristic.decr
-            this.pHappiness(this.happiness)
-          } else if (this[status] === true ) {
-//          this.happiness += characteristic.incr
-          }
-
-        this[status] = false
-        this[timeName] = new Date (Date.now() + newInterval)
-        characteristic.calculate_check_time = this[timeName]
-
-        //patch data back to Pets table
-        const petData = {active_status: this.active_status, happiness: this.happiness}
-        Adapter.updatePetDB(this.id, petData)
-
-        //patch data back to Pet Characteristics table
-        const petCharData = {check_time: this[timeName]}
-
-        Adapter.updatePetCharDB(characteristic.id, petCharData)
-//      document.getElementById(`${characteristic.name}`).disabled = false
-        }
+      if (c.action_status === false){
+        this.happiness -= c.decr
+        console.log(`Oh no, you went down ${c.decr} points!`)
+        this.pHappiness(this.happiness)
       }
+      c.action_status = false
+      c.check_time = new Date(Date.now() + c.interval)
+      
+      //patch data back to Pets table in db
+      const petData = {active_status: this.active_status, happiness: this.happiness}
+      Adapter.updatePetDB(this.id, petData)
+
+      //patch data back to Pet Characteristics table
+      const petCharData = {check_time: c.check_time}
+      Adapter.updatePetCharDB(c.id, petCharData)
     }
-  )}
+
+    // this.pet_characteristics.forEach(characteristic => {
+    //   if (characteristic.name === char) {
+    //     this[timeName] = new Date(characteristic.calculate_check_time)
+
+    //     if ( new Date() >= (new Date(this[timeName] - (characteristic.interval/2))) && this[status] === false) {
+    //       document.getElementById(`${characteristic.name}`).disabled = false
+    //     }
+    //     if (new Date() >= this[timeName]) {
+    //       //check if pet is fed to change happiness
+    //       if (this[status] === false) {
+    //         // debugger
+    //         this.happiness -= characteristic.decr
+//             console.log(`Oh no, you went down ${characteristic.decr} points!`)
+//             this.pHappiness(this.happiness)
+//           } else if (this[status] === true ) {
+// //          this.happiness += characteristic.incr
+//           }
+
+//         this[status] = false
+//         this[timeName] = new Date (Date.now() + newInterval)
+//         characteristic.calculate_check_time = this[timeName]
+
+//         //patch data back to Pets table
+//         const petData = {active_status: this.active_status, happiness: this.happiness}
+//         Adapter.updatePetDB(this.id, petData)
+
+//         //patch data back to Pet Characteristics table
+//         const petCharData = {check_time: this[timeName]}
+
+//         Adapter.updatePetCharDB(characteristic.id, petCharData)
+// //      document.getElementById(`${characteristic.name}`).disabled = false
+//         }
+//       }
+//     }
+//   )
+  }
 
 
 }
