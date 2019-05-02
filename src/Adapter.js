@@ -35,12 +35,15 @@ class Adapter {
   
   //Patch pet characteristic update to the database
   static updatePetCharDB(id, data) {
+    
     fetch(`http://localhost:3000/api/v1/pet_characteristics/${id}`, {
     method: "PATCH",
     mode: 'cors',
     headers: Adapter.headers,
     body: JSON.stringify(data)
     })
+    .then(res => res.json())
+    // .then(pet_char => console.log('new check_time:', pet_char))
   }
 }
 

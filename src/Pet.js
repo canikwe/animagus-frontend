@@ -11,19 +11,21 @@ class Pet {
     this.pet_characteristics = petObj.pet_characteristics
     this.level = petObj.level
 
-    //methods
-    // this.createChars(petObj)
     Pet.all.push(this)
   }
 
   ///////////// Methods /////////////
   createChars(){
-  //method to dynamically create characteristic check times used by the game clock
+  //method to dynamically create characteristic check_time for new pets
     this.pet_characteristics.forEach(char => {
-      const randomizer = Math.floor(Math.random() * 10) * char.interval
-      char.check_time = new Date(Date.now() + randomizer)
-
-      console.log(`${this.name}'s ${char.name} time:`, char.check_time)
+      
+      if (char.check_time === null){
+        const randomizer = Math.floor(Math.random() * 10) * char.interval
+        char.check_time = new Date(Date.now() + randomizer)
+        console.log(`${this.name}'s ${char.name} time:`, char.check_time)
+      } else {
+        char.check_time = new Date(char.check_time)
+      }
     })
   }
   
@@ -52,8 +54,9 @@ class Pet {
   // }
 
   pNotifications(c){
+    
     //appends notifications to the notification div for active pets only
-    if (this.active_status) {
+    if (this.active_status && !c.action_status) {
       const stats = document.querySelector("#pet-notifications")
       const notification = document.createElement("div")
       const del_btn = document.createElement('button')
@@ -98,13 +101,17 @@ class Pet {
         a.innerText = characteristic.name
         a.id = characteristic.name
         a.disabled = characteristic.action_status
-//
+
         a.addEventListener("click", () => {
           // disable button until check_time is reached, increase and update happiness, and update action status
           a.disabled = true
           characteristic.action_status = true
           this.happiness += characteristic.incr
           this.pHappiness(this.happiness)
+
+          const petCharData = {action_status: true, check_time: characteristic.check_time}
+          Adapter.updatePetCharDB(characteristic.id, petCharData)
+
         })
         //append buttons to control panel div
         ctrlPanel.append(a)
@@ -170,9 +177,9 @@ class Pet {
     //update body's innerHTML with renered pet info
     this.updateDOM()
 
-    // set interval for active pets only
+    // start setInterval for active pets only
     if(this.active_status) {
-      // update checktime for each pet characteristic
+      // update check_time for each pet characteristic
       this.createChars()
 
       let hapInterval = setInterval(() => {
@@ -246,8 +253,6 @@ class Pet {
     if (new Date() >= c.check_time) {
       document.getElementById(`${c.name}`).disabled = false
 
-      this.pNotifications(c)
-
       if (c.action_status === false){
         this.happiness -= c.decr
         console.log(`Oh no, you went down ${c.decr} points!`)
@@ -255,13 +260,16 @@ class Pet {
       }
       c.action_status = false
       c.check_time = new Date(Date.now() + c.interval)
-      
+
+      console.log(`New ${c.name} check_time`, c.check_time)
+      this.pNotifications(c)
+
       //patch data back to Pets table in db
       const petData = {active_status: this.active_status, happiness: this.happiness}
       Adapter.updatePetDB(this.id, petData)
 
       //patch data back to Pet Characteristics table
-      const petCharData = {check_time: c.check_time}
+      const petCharData = {check_time: c.check_time, action_status: false}
       Adapter.updatePetCharDB(c.id, petCharData)
     }
   }
