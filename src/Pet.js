@@ -6,11 +6,10 @@ class Pet {
     this.age = petObj.age
     this.happiness = petObj.happiness
     this.image = petObj.image
-    this.bio = petObj.bio
+    // this.bio = petObj.bio
     this.kill_clock = petObj.kill_clock
     this.active_status = petObj.active_status
     this.pet_characteristics = petObj.pet_characteristics
-    this.session = new Date()
 
     //methods
     this.createChars(petObj)
@@ -35,7 +34,9 @@ class Pet {
   pStats(){
     //update pet stats with info about rendered pet
     document.querySelector("#pet-stats").innerText = `Age: ${this.age}`
+
     // `Age: ${this.age} | Status: ${this.active_status} | Happiness Level: ${this.happiness}`
+
   }
 
   pImg(){
@@ -43,15 +44,31 @@ class Pet {
     document.querySelector("#pet-pic").src = this.image
   }
 
-  pBio(){
-    //create div to display bio
-    const bio = document.querySelector("#pet-bio")
+  // pBio(){
+  //   //create div to display bio
+  //   const bio = document.querySelector("#pet-bio")
 
-    if (this.bio === undefined) {
-    //update div innerText with Cat Ipsum gibberish
-    bio.innerText = "Peer out window, chatter at birds, lure them to mouth sniff sniff the door is opening! how exciting oh, it's you, meh. Sleep on dog bed, force dog to sleep on floor cats go for world domination and human is washing you why halp oh the horror flee scratch hiss bite for i will ruin the couch with my claws crusty butthole so human clearly uses close to one life a night no one naps that long so i revive by standing on chestawaken! mesmerizing birds..."
-    } else{
-      bio.innerText = `Bio: ${this.bio}`
+  //   if (this.bio === undefined) {
+  //   //update div innerText with Cat Ipsum gibberish
+  //   bio.innerText = "Peer out window, chatter at birds, lure them to mouth sniff sniff the door is opening! how exciting oh, it's you, meh. Sleep on dog bed, force dog to sleep on floor cats go for world domination and human is washing you why halp oh the horror flee scratch hiss bite for i will ruin the couch with my claws crusty butthole so human clearly uses close to one life a night no one naps that long so i revive by standing on chestawaken! mesmerizing birds..."
+  //   } else{
+  //     bio.innerText = `Bio: ${this.bio}`
+  //   }
+  // }
+
+  pNotifications(c){
+    if (this.active_status) {
+      const stats = document.querySelector("#pet-notifications")
+  
+      let char_action = document.createElement("li")
+      char_action.className = 'list-item'
+      char_action.innerText = `It is time to ${c.action} your pet!`
+
+      stats.append(char_action)
+
+      char_action.addEventListener('click', () => {
+        stats.removeChild(char_action)
+      })
     }
   }
 
@@ -96,6 +113,9 @@ class Pet {
         })
     //append buttons to control panel div
         ctrlPanel.append(a)
+
+    //add notifications to the stats div
+    this.pNotifications(characteristic)
     })
   }
 
@@ -133,10 +153,11 @@ class Pet {
                   <div id="pet-stats">Age: 2 | Breed: Dog | Something Else</div>
 
                   <p class="subtitle"></p>
-                  <p id="pet-bio">
-                    <!-- Content -->
-                    Side-eyes your "jerk" other hand while being petted dream about hunting birds or meowing non stop for food or the cat was chasing the mouse. Cat cat moo moo lick ears lick paws. Flee in terror at cucumber discovered on floor. Ooh, are those your $250 dollar sandals? lemme use that as my litter box roll over and sun my belly hiss at vacuum cleaner cats woo.
-                  </p>
+                  <div class="list is-hoverable">
+                    <ul id="pet-notifications">
+                      <!-- Content -->
+                    </ul>
+                  </div>
               </div>
                   <div class="tile is-child box" id="happi">
                   <p class="title">Happiness</p>
@@ -161,13 +182,21 @@ class Pet {
 //
       if (this.happiness <= 0) {
         this.petDead()
-        this.active_status = "inactive"
+        this.active_status = false
+
         clearInterval(hapInterval)
         console.log("you have died")
+
+        Adapter.updatePetDB(this.id, {active_status: this.active_status})
+
       } else if (this.happiness >= 100) {
         this.petWinner()
+        this.active_status = false
+
         clearInterval(hapInterval)
         console.log("you have won")
+        
+        Adapter.updatePetDB(this.id, {active_status: this.active_status})
 
       } else {
         this.pet_characteristics.forEach(char => {
@@ -191,11 +220,12 @@ class Pet {
 
     this.pStats()
 
-    this.pBio()
+    // this.pBio()
 
     this.controlPanel()
 
     this.pHappiness()
+
   }
 
   petDead() {
@@ -227,6 +257,9 @@ class Pet {
 
     if (new Date() >= c.check_time) {
       document.getElementById(`${c.name}`).disabled = false
+
+      console.log('Time to do something with your pet...')
+      this.pNotifications(c)
 
       if (c.action_status === false){
         this.happiness -= c.decr

@@ -29,7 +29,7 @@ class Adapter {
     body: JSON.stringify(data)
   })
  .then(res => res.json())
- .then(console.log)
+ .then(() => console.log('pet updated on backend'))
 
   }
   
