@@ -18,21 +18,6 @@ class PetController{
 
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   static renderPetForm() {
     document.querySelector('#main-container').innerHTML = `
                                                       <div class="container" id='pet-form-container'>
