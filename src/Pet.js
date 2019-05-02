@@ -12,15 +12,18 @@ class Pet {
     this.level = petObj.level
 
     //methods
-    this.createChars(petObj)
+    // this.createChars(petObj)
     Pet.all.push(this)
   }
 
   ///////////// Methods /////////////
-  createChars(petObj){
+  createChars(){
   //method to dynamically create characteristic check times used by the game clock
-    petObj.pet_characteristics.forEach(char => {
-      char.check_time = new Date(Date.now() + char.interval)
+    this.pet_characteristics.forEach(char => {
+      const randomizer = Math.floor(Math.random() * 10) * char.interval
+      char.check_time = new Date(Date.now() + randomizer)
+
+      console.log(`${this.name}'s ${char.name} time:`, char.check_time)
     })
   }
   
@@ -78,9 +81,10 @@ class Pet {
       div.innerText = newScore
     }
 
-    const petData = {happiness: this.happiness}
-    Adapter.updatePetDB(this.id, petData)
-
+    if (this.active_status) {
+      const petData = {happiness: this.happiness}
+      Adapter.updatePetDB(this.id, petData)
+    }
   }
 
   controlPanel() {
@@ -168,6 +172,9 @@ class Pet {
 
     // set interval for active pets only
     if(this.active_status) {
+      // update checktime for each pet characteristic
+      this.createChars()
+
       let hapInterval = setInterval(() => {
 
         if (this.happiness <= 0) {
