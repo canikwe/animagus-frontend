@@ -1,5 +1,5 @@
-# Animagus
-Animagus is a project web application written in Vanilla JavaScript that shows simple DOM manipulation in a fun interactive game.
+# Animagus | Frontend
+Animagus is a web application written in Vanilla JavaScript that shows simple DOM manipulation in a fun interactive game.
 
 ## Demo
 
