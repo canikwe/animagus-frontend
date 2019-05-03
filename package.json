@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "bulma": "^0.7.4"
+    "bulma": "^0.7.4",
+    "mocha": "^6.1.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
