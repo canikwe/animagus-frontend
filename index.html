@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Animagus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Animagus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--Style Sheets-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-  <link rel="stylesheet" href="css/index.css">
-<!--  Javascript Files-->
-  <script src="src/Adapter.js"></script>
-  <script src="src/Pet.js"></script>
-  <script src="src/PetController.js"></script>
-  <script src="src/index.js"></script>
+  <!--Style Sheets-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="css/index.css">
 
-<!-- Font Files -->
-  <style>@import url('https://fonts.googleapis.com/css?family=Acme');</style>
-  <style>@import url('https://fonts.googleapis.com/css?family=Prompt');</style>
-  <style>@import url('https://fonts.googleapis.com/css?family=Russo+One');</style>
-</head>
+  <!--  Javascript Files-->
+    <script src="src/Adapter.js"></script>
+    <script src="src/Pet.js"></script>
+    <script src="src/PetController.js"></script>
+    <script src="src/PetView.js"></script>
+    <script src="src/index.js"></script>
 
-<body>
-<!-- Replace with Header Bar-->
-<div class="container" id="animagus-container">
-  <div class="tile is-parent is-horizontal">
-        <article class="tile is-child notification is-primary">
-          <h1 id="animagus">ANIMAGUS</h1>
-          <div style="display: inline-block;" id=show-pet-buttons></div>
-        </article>
-  </div>
-  <!-- <div>
-    <h1>Animagus</h1>
-  </div> -->
-</div>
-<!--Main Div for rendering-->
-    <div class="container" id="main-container">
+  <!-- Font Files -->
+    <style>@import url('https://fonts.googleapis.com/css?family=Acme');</style>
+    <style>@import url('https://fonts.googleapis.com/css?family=Prompt');</style>
+    <style>@import url('https://fonts.googleapis.com/css?family=Russo+One');</style>
+  </head>
 
-<!--   Render Content Here -->
-
+  <body>
+    <!-- Header -->
+    <div class="container" id="animagus-container">
+      <div class="tile is-parent is-horizontal">
+            <article class="tile is-child notification is-primary">
+              <h1 id="animagus">ANIMAGUS</h1>
+              <div style="display: inline-block;" id=show-pet-buttons></div>
+            </article>
+      </div>
     </div>
+
+    <!--Main div for JS rendering-->
+    <div class="container" id="main-container">
+      
+    </div>
+
+    <!--   Footer -->
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
@@ -48,6 +48,5 @@
         </p>
       </div>
     </footer>
-
-</body>
+  </body>
 </html>
