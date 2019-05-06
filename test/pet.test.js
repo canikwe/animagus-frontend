@@ -87,7 +87,7 @@ const notSpot = new Pet({name: 'notSpot', happiness: 50, active_status: true, pe
     "action": "play with",
     "calculate_check_time": "2019-05-02T21:43:09.457Z",
     "created_at": "2019-05-02T21:40:29.260Z",
-    "check_time": null,
+    "check_time": "2019-05-02T21:40:29.260Z",
     "action_status": false,
     "action_verb": "played",
     "interval": 10000
@@ -147,12 +147,21 @@ describe('Pet.js', () => {
       })
     })
 
+    context('When #createChars() is called', () => {
+      it('creates a new Date object for check_time if it is null', () => {
+        notSpot.createChars()
+        assert.instanceOf(notSpot.pet_characteristics[0].check_time, Date)
+      })
+
+      it('updates the check_time to a newer date', () => {
+        const oldTime = {...notSpot.pet_characteristics[1]}.check_time
+        notSpot.createChars()
+        assert.isAtLeast(notSpot.pet_characteristics[1].check_time, oldTime)
+      })
+    })
 
 })
 
-describe('PetController', () => {
-
-})
 
 /////////// INTEGRATION TESTS ///////////
 
