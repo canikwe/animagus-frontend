@@ -120,10 +120,14 @@ describe('Pet.js', () => {
   })
 
   context('When given a new happiness score', () => {
-    it('should update the happiness by the given amount', () => {
-      // will need to uncouple the DOM manipulation logic from the object manipulation logic
-      spot.pHappiness(60)
+    it('should increase the happiness by the given amount', () => {
+      spot.increaseHappiness(10)
       expect(spot.happiness).to.equal(60) 
+    })
+
+    it('should decrease the happiness by the given amount', () => {
+      notSpot.decreaseHappiness(5)
+      expect(notSpot.happiness).to.equal(45)
     })
   })
 
@@ -131,105 +135,105 @@ describe('Pet.js', () => {
 
 /////////// INTEGRATION TESTS ///////////
 
-describe('Create a new pet', () => {
-  //add some spy logic here to be able to interact with the DOM
+// describe('Create a new pet', () => {
+//   //add some spy logic here to be able to interact with the DOM
 
-  context('When a pet is clicked in the pet-store', () => {
-    it('should render the pet in the #main-pet div', () => {
+//   context('When a pet is clicked in the pet-store', () => {
+//     it('should render the pet in the #main-pet div', () => {
 
-    })
-  })
+//     })
+//   })
 
-  context('When a pet is submitted without an image selection', () => {
-    it('should not create a new Pet instance', () => {
-      //assertion --> should NOT be an instanceOf Pet
-    })
+//   context('When a pet is submitted without an image selection', () => {
+//     it('should not create a new Pet instance', () => {
+//       //assertion --> should NOT be an instanceOf Pet
+//     })
 
-    it('should alert the user to select an image', () => {
-      //spy to display an alert message to the user
-    })
-  })
+//     it('should alert the user to select an image', () => {
+//       //spy to display an alert message to the user
+//     })
+//   })
 
-  context('When all fields are filled out and the submit button is clicked', () => {
-    it('should create a new Pet instance', () => {
-      //assertion that a new Pet instance is instantiated
-    })
+//   context('When all fields are filled out and the submit button is clicked', () => {
+//     it('should create a new Pet instance', () => {
+//       //assertion that a new Pet instance is instantiated
+//     })
 
-    it('main-container is rendered with information about the pet', () => {
-      //assert the main div has the pet's picture and the pet's name
-      //assert the control panel renders all the pet charactertistcs
-      //assert the stats div has the pet's age
-      //assert the happiness div has the pet's correct happiness score
-    })
-  })
-})
+//     it('main-container is rendered with information about the pet', () => {
+//       //assert the main div has the pet's picture and the pet's name
+//       //assert the control panel renders all the pet charactertistcs
+//       //assert the stats div has the pet's age
+//       //assert the happiness div has the pet's correct happiness score
+//     })
+//   })
+// })
 
-describe('Main Game Play', () => {
-  context('When the feed button is selected before the check_time', () => {
-    it('should update the pet happiness', () => {
-      //assert the pet's happiness is updated
-    })
+// describe('Main Game Play', () => {
+//   context('When the feed button is selected before the check_time', () => {
+//     it('should update the pet happiness', () => {
+//       //assert the pet's happiness is updated
+//     })
 
-    it('should disable the feed button', () => {
-      //assert the button is disabled
-    })
+//     it('should disable the feed button', () => {
+//       //assert the button is disabled
+//     })
 
-    it('should update the feed action_status to true', () => {
-      //pseudo-pseudo code -> expect(feed.action_status).to.be(true)
-    })
-  })
+//     it('should update the feed action_status to true', () => {
+//       //pseudo-pseudo code -> expect(feed.action_status).to.be(true)
+//     })
+//   })
 
-  context('When the feed button is not selected before the check_time', () => {
-    it('should decrease the pet happiness score', () => {
-      //assert the pet happiness score is lowered by the correct characteristic decr value
-    })
-  })
+//   context('When the feed button is not selected before the check_time', () => {
+//     it('should decrease the pet happiness score', () => {
+//       //assert the pet happiness score is lowered by the correct characteristic decr value
+//     })
+//   })
 
-  context('When the characteristic check_time is reached', () => {
-    it('should update the characteristic check_time', () => {
-      //assert an updated check_time
-    })
+//   context('When the characteristic check_time is reached', () => {
+//     it('should update the characteristic check_time', () => {
+//       //assert an updated check_time
+//     })
 
-    it('should enable the characteristic button', () => {
-      //assert the characteristic button is enabled
-    })
+//     it('should enable the characteristic button', () => {
+//       //assert the characteristic button is enabled
+//     })
 
-    it('should send a notification to the stats div', () => {
-      //assert the user is notified 'It is time to "" your pet'
-    })
-  })
-})
+//     it('should send a notification to the stats div', () => {
+//       //assert the user is notified 'It is time to "" your pet'
+//     })
+//   })
+// })
 
-describe('Ending Game Play', () => {
-  context('When the pet happiness reaches 100', () => {
-    it('should stop the interval', () => {
-      //interval is stopped
-      spot.petWinner()
-      expect(spot.interval).to.be(false)
-      notSpot.petDead()
-      expect(notSpot.interval).to.be(false)
-    })
+// describe('Ending Game Play', () => {
+//   context('When the pet happiness reaches 100', () => {
+//     it('should stop the interval', () => {
+//       //interval is stopped
+//       spot.petWinner()
+//       expect(spot.interval).to.be(false)
+//       notSpot.petDead()
+//       expect(notSpot.interval).to.be(false)
+//     })
 
-    it('should set the pet active_status to inactive', () => {
-      spot.pHappiness(100)
-      expect(spot.active_status).to.equal(false)
-      notSpot.pHappiness(0)
-      expect(notSpot.active_status).to.equal(false)
-      spot.pHappiness(50)
-    })
+//     it('should set the pet active_status to inactive', () => {
+//       spot.pHappiness(100)
+//       expect(spot.active_status).to.equal(false)
+//       notSpot.pHappiness(0)
+//       expect(notSpot.active_status).to.equal(false)
+//       spot.pHappiness(50)
+//     })
 
-    it('notifies the user that the game has been won', () => {
-      //assert user notification message
-      //assert the main-pet-div is updated to a trophy
-    })
+//     it('notifies the user that the game has been won', () => {
+//       //assert user notification message
+//       //assert the main-pet-div is updated to a trophy
+//     })
 
-    it('disables the control panel buttons', () => {
-      //buttons are disabled
-    })
+//     it('disables the control panel buttons', () => {
+//       //buttons are disabled
+//     })
 
-    it('clears all notifications', () => {
-      //notifications are all cleared
-    })
-  })
+//     it('clears all notifications', () => {
+//       //notifications are all cleared
+//     })
+//   })
 
-})
+// })
