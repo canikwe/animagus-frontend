@@ -1,6 +1,5 @@
 class Pet {
   constructor(petObj){
-    //attributes
     this.id = petObj.id
     this.name = petObj.name
     this.age = petObj.age
@@ -15,8 +14,10 @@ class Pet {
   }
 
   ///////////// Methods /////////////
-  createChars(){
+
+
   // dynamically create characteristic check_time for new pets
+  createChars(){
     this.pet_characteristics.forEach(char => {
       
       if (char.check_time === null){
@@ -43,13 +44,6 @@ class Pet {
 
     pet_char.action_status = true
   }
-
-  // update action_status to false on client-side
-  // neglectPet(char) {
-  //   const pet_char = this.pet_characteristics.find(c => c.id === char.id)
-
-  //   pet_char.action_status = false
-  // }
 
   increaseHappiness(incr) {
     return this.happiness += incr

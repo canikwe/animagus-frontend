@@ -22,8 +22,8 @@ class PetController{
     pet.pet_characteristics.forEach(char => {
       PetView.controlPanel(char, pet)
       .addEventListener('click', (e) => {
+        PetController.handleCharacteristic(char, pet)
         PetView.disableBtn(e.target)
-        PetController.handleControlPanel(char, pet)
         PetView.updateHappiness(pet.happiness)
       })
     })
@@ -35,14 +35,14 @@ class PetController{
     petBtns.innerHTML = ''
   }
 
-  static handleControlPanel(characteristic, pet) {
-    // client-side methods
+  static handleCharacteristic(characteristic, pet) {
+    // client-side methods to advance game play session
     pet.careForPet(characteristic)
     pet.increaseHappiness(characteristic.incr)
 
     // server-side methods for db persistence
     const petData = { happiness: pet.happiness }
-    Adapter.updatePetDB(pet.id, petData) // PACTH to pet route
+    Adapter.updatePetDB(pet.id, petData) // PATCH to pet route
 
     const petCharData = { action_status: true, check_time: characteristic.check_time }
     Adapter.updatePetCharDB(characteristic.id, petCharData) // PATCH to pet_characteristics route
