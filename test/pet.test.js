@@ -140,10 +140,14 @@ describe('Pet.js', () => {
 
   })
     
-    context('When #neglectPet() is called', () => {
+    context('When #resetCharacteristic() is called', () => {
       it('should have a false action_status', () => {
-        notSpot.neglectPet(notSpot.pet_characteristics[0])
+        const oldTime = new Date({...notSpot.pet_characteristics[1]}.check_time)
+
+        notSpot.resetCharacteristic(notSpot.pet_characteristics[0])
+
         expect(notSpot.pet_characteristics[0].action_status).to.equal(false)
+        assert.isAbove(notSpot.pet_characteristics[0].check_time, oldTime)
       })
     })
 

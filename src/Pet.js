@@ -29,23 +29,27 @@ class Pet {
     })
   }
 
-  // startGamePlay() {
-  //   this.pet_characteristics.forEach(char => {
-  //     char.action_status = true
-  //   })
-  // }
+  //create a new check_time for the characteristic and set action_status back to false
+  resetCharacteristic(char) {
+    const pet_char = this.pet_characteristics.find(c => c.id === char.id)
 
+    pet_char.check_time = new Date(Date.now() + char.interval)
+    pet_char.action_status = false
+  }
+
+  // set true action_status for pet characteristic to ensure points are not decremented at characteristic check_time
   careForPet(char) {
     const pet_char = this.pet_characteristics.find(c => c.id === char.id)
 
     pet_char.action_status = true
   }
 
-  neglectPet(char) {
-    const pet_char = this.pet_characteristics.find(c => c.id === char.id)
+  // update action_status to false on client-side
+  // neglectPet(char) {
+  //   const pet_char = this.pet_characteristics.find(c => c.id === char.id)
 
-    pet_char.action_status = false
-  }
+  //   pet_char.action_status = false
+  // }
 
   increaseHappiness(incr) {
     return this.happiness += incr

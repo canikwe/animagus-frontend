@@ -36,18 +36,16 @@ class PetController{
   }
 
   static handleControlPanel(characteristic, pet) {
-    // characteristic.action_status = true //possibly move to Pet.js as a method
-
+    // client-side methods
     pet.careForPet(characteristic)
     pet.increaseHappiness(characteristic.incr)
 
-    // send new happiness to the db for backend persistence
+    // server-side methods for db persistence
     const petData = { happiness: pet.happiness }
-    Adapter.updatePetDB(pet.id, petData)
+    Adapter.updatePetDB(pet.id, petData) // PACTH to pet route
 
-    //send pet_char info to the db for backend persistence
     const petCharData = { action_status: true, check_time: characteristic.check_time }
-    Adapter.updatePetCharDB(characteristic.id, petCharData)
+    Adapter.updatePetCharDB(characteristic.id, petCharData) // PATCH to pet_characteristics route
   }
 
   static startGamePlay(currentPet){
@@ -101,23 +99,19 @@ class PetController{
             PetView.updateHappiness(pet.happiness)
          }
 
-        // Reset characteristic: create a new check_time for the characteristic, set action_status to false, and activate the characteristic button, and create new notification
-        // move to Pet.js
-        // c.action_status = false
-        pet.neglectPet(c)
-        c.check_time = new Date(Date.now() + c.interval)
+        //reset characteristic: client-side
+        pet.resetCharacteristic(c)
         const btn = document.getElementById(`${c.name}`)
         PetView.activateBtn(btn)
         PetView.pNotifications(c, pet)
         console.log(`New ${c.name} check_time`, c.check_time)
    
-         //patch data back to Pets table in db
+         //reset characteristic: server-side
          const petData = {active_status: pet.active_status, happiness: pet.happiness}
-         Adapter.updatePetDB(pet.id, petData)
+         Adapter.updatePetDB(pet.id, petData) //patch to pets route
    
-         //patch data back to Pet Characteristics table
          const petCharData = {check_time: c.check_time, action_status: false}
-         Adapter.updatePetCharDB(c.id, petCharData)
+         Adapter.updatePetCharDB(c.id, petCharData) //patch to pet_characteristics route
        }
      })
   }
