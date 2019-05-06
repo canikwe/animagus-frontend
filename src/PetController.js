@@ -36,7 +36,9 @@ class PetController{
   }
 
   static handleControlPanel(characteristic, pet) {
-    characteristic.action_status = true //possibly move to Pet.js as a method
+    // characteristic.action_status = true //possibly move to Pet.js as a method
+
+    pet.careForPet(characteristic)
     pet.increaseHappiness(characteristic.incr)
 
     // send new happiness to the db for backend persistence
@@ -101,7 +103,8 @@ class PetController{
 
         // Reset characteristic: create a new check_time for the characteristic, set action_status to false, and activate the characteristic button, and create new notification
         // move to Pet.js
-        c.action_status = false
+        // c.action_status = false
+        pet.neglectPet(c)
         c.check_time = new Date(Date.now() + c.interval)
         const btn = document.getElementById(`${c.name}`)
         PetView.activateBtn(btn)

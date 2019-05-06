@@ -29,10 +29,22 @@ class Pet {
     })
   }
 
-  startGamePlay() {
-    this.pet_characteristics.forEach(char => {
-      char.action_status = true
-    })
+  // startGamePlay() {
+  //   this.pet_characteristics.forEach(char => {
+  //     char.action_status = true
+  //   })
+  // }
+
+  careForPet(char) {
+    const pet_char = this.pet_characteristics.find(c => c.id === char.id)
+
+    pet_char.action_status = true
+  }
+
+  neglectPet(char) {
+    const pet_char = this.pet_characteristics.find(c => c.id === char.id)
+
+    pet_char.action_status = false
   }
 
   increaseHappiness(incr) {

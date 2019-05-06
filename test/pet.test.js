@@ -2,6 +2,7 @@
 // const Pet = require('../src/Pet')
 // const expect = require('chai').expect;
 
+
 const expect = chai.expect
 const assert = chai.assert
 
@@ -20,7 +21,7 @@ const spot = new Pet({name: 'Spot', happiness: 50, active_status: true, pet_char
       "calculate_check_time": "2019-05-02T21:43:20.455Z",
       "created_at": "2019-05-02T21:40:29.242Z",
       "check_time": null,
-      "action_status": true,
+      "action_status": false,
       "action_verb": "fed",
       "interval": 20000
     }, 
@@ -52,7 +53,7 @@ const spot = new Pet({name: 'Spot', happiness: 50, active_status: true, pet_char
       "calculate_check_time": "2019-05-02T21:43:49.454Z",
       "created_at": "2019-05-02T21:40:29.250Z",
       "check_time": null,
-      "action_status": true,
+      "action_status": false,
       "action_verb": "cleaned",
       "interval": 30000 
     }]
@@ -71,7 +72,7 @@ const notSpot = new Pet({name: 'notSpot', happiness: 50, active_status: true, pe
     "calculate_check_time": "2019-05-02T21:43:20.455Z",
     "created_at": "2019-05-02T21:40:29.242Z",
     "check_time": null,
-    "action_status": true,
+    "action_status": false,
     "action_verb": "fed",
     "interval": 20000
   }, 
@@ -103,7 +104,7 @@ const notSpot = new Pet({name: 'notSpot', happiness: 50, active_status: true, pe
     "calculate_check_time": "2019-05-02T21:43:49.454Z",
     "created_at": "2019-05-02T21:40:29.250Z",
     "check_time": null,
-    "action_status": true,
+    "action_status": false,
     "action_verb": "cleaned",
     "interval": 30000 
   }]
@@ -130,6 +131,26 @@ describe('Pet.js', () => {
       expect(notSpot.happiness).to.equal(45)
     })
   })
+
+  context('When #careForPet() is called', () => {
+    it('should have a true action_status', () => {
+      notSpot.careForPet(notSpot.pet_characteristics[0])
+      expect(notSpot.pet_characteristics[0].action_status).to.equal(true)
+    })
+
+  })
+    
+    context('When #neglectPet() is called', () => {
+      it('should have a false action_status', () => {
+        notSpot.neglectPet(notSpot.pet_characteristics[0])
+        expect(notSpot.pet_characteristics[0].action_status).to.equal(false)
+      })
+    })
+
+
+})
+
+describe('PetController', () => {
 
 })
 

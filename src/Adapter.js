@@ -1,9 +1,10 @@
 class Adapter {
 
-  static getPet(id){
-    return fetch(`${Adapter.baseUrl}/${id}`)
-    .then(res => res.json())
-  }
+  // static getPet(id){
+  //   return fetch(`${Adapter.baseUrl}/${id}`)
+  //   .then(res => res.json())
+  // }
+  
 //fetch all pets from the deebee
   static getAllPets(){
     return fetch(`${Adapter.baseUrl}/`)
