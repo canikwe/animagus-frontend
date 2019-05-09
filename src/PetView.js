@@ -158,7 +158,7 @@ class PetView {
     const ctrlPanel = document.querySelector("#control-panel")
     const btn = document.createElement("button")
 
-    btn.classList = "button is-link"
+    btn.classList = "button is-link char"
     btn.innerText = characteristic.name
     btn.id = characteristic.name
     btn.disabled = characteristic.action_status
@@ -249,7 +249,7 @@ class PetView {
 
 // update main-container to show final status of the game
   static endGame(pet) {
-    const buttons = document.querySelectorAll('button')
+    const buttons = document.querySelectorAll('.char')
     buttons.forEach(button => button.disabled = true)
 
     if (pet.happiness <= 0) {
