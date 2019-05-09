@@ -28,11 +28,12 @@ class PetController{
       })
     })
 
-    PetController.startGamePlay(pet)
     
-    // clear buttons from the show=pet-buttons div while game is in play
+    // clear buttons from the show-pet-buttons div while game is in play
     const petBtns = document.querySelector('#show-pet-buttons')
     petBtns.innerHTML = ''
+
+    PetController.startGamePlay(pet)
   }
 
   static handleCharacteristic(characteristic, pet) {
@@ -66,6 +67,8 @@ class PetController{
   
           //send to backend for db persistence
           Adapter.updatePetDB(currentPet.id, {active_status: currentPet.active_status, happiness: 0})
+
+          PetController.attachBackBtnListener()
   
         } else if (currentPet.happiness >= 100) {
           PetView.endGame(currentPet)
@@ -77,6 +80,8 @@ class PetController{
 
           //send to backend for db persistence
           Adapter.updatePetDB(currentPet.id, {active_status: currentPet.active_status, happiness: 100, level: 2})
+
+          PetController.attachBackBtnListener()
   
         } else {
           PetController.checkCharacteristic(currentPet)
@@ -84,6 +89,8 @@ class PetController{
       }, 10)
     } else {
       PetView.endGame(currentPet)
+      PetController.attachBackBtnListener()
+
     }
   }
 
@@ -114,6 +121,19 @@ class PetController{
          Adapter.updatePetCharDB(c.id, petCharData) //patch to pet_characteristics route
        }
      })
+  }
+
+  // create event listener for back button to render the homepage onClick
+  static attachBackBtnListener() {
+    PetView.renderBackBtn().addEventListener('click', () => {
+      PetView.renderHomepage()
+      Pet.all.forEach(p => {
+        PetView.renderPetBtn(p)
+        .addEventListener('click', () => {
+        PetController.gameEventListeners(p)
+        })
+      })
+    })
   }
 
   // create event listeners for each picture in the pet-gallery

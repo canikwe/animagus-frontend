@@ -217,11 +217,11 @@ class PetView {
 
   // create a button for each pet pulled from the database and instantiated client-side
   static renderPetBtn(pet) {
-    debugger
     const petBtn = document.createElement('button')
     const div = document.querySelector('#show-pet-buttons')
 
     petBtn.innerText = pet.name
+    petBtn.id = 'back'
     petBtn.className = "button is-warning pet"
     
     div.appendChild(petBtn)
