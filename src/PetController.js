@@ -128,7 +128,12 @@ class PetController{
     PetView.renderBackBtn().addEventListener('click', () => {
       clearInterval(hapInterval) //stop game clock interval on click
 
-      PetView.renderHomepage() // back to homepage. Create all pet buttons from instantiated pets
+      // render homepage and attach all event listeners
+      PetView.renderHomepage()
+      PetController.attachGalleryListeners()
+      PetController.attachFormListeners()
+      
+      // Create all pet buttons from instantiated pets and attach event listeners
       Pet.all.forEach(p => {
         PetView.renderPetBtn(p)
         .addEventListener('click', () => {
