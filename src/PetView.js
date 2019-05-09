@@ -95,7 +95,7 @@ class PetView {
       </div>
       `
 
-      document.querySelector('#show-pet-buttons').innerText = ''
+      PetView.clearPetBtns()
   }
 
   //skeleton of show page to display the proper divs. To be updated with proper pet information upon successfull instantiation
@@ -228,6 +228,12 @@ class PetView {
     
     div.appendChild(petBtn)
     return petBtn
+  }
+
+  // clear buttons from the show-pet-buttons div while game is in play
+  static clearPetBtns() {
+    const petBtns = document.querySelector('#show-pet-buttons')
+    petBtns.innerHTML = ''
   }
 
   static renderBackBtn() {

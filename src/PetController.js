@@ -30,11 +30,9 @@ class PetController{
 
     
     // clear buttons from the show-pet-buttons div while game is in play
-    const petBtns = document.querySelector('#show-pet-buttons')
-    petBtns.innerHTML = ''
+    PetView.clearPetBtns()
 
     PetController.startGamePlay(pet)
-    PetController.attachBackBtnListener()
 
   }
 
@@ -52,12 +50,13 @@ class PetController{
   }
 
   static startGamePlay(currentPet){
+    let hapInterval
     if(currentPet.active_status) {
       // update check_time for each pet characteristic
       currentPet.createChars()
 
       //start game clock to periodically check pet characteristics and their action_status
-      let hapInterval = setInterval(() => {
+      hapInterval = setInterval(() => {
 
         if (currentPet.happiness <= 0) {
           PetView.endGame(currentPet)
@@ -88,6 +87,10 @@ class PetController{
     } else {
       PetView.endGame(currentPet)
     }
+    
+    //attach back button to show-pet-buttons div
+    PetController.attachBackBtnListener(hapInterval)
+
   }
 
   // update front and backend if characteristic's check_time has been reached
@@ -120,9 +123,12 @@ class PetController{
   }
 
   // create event listener for back button to render the homepage onClick
-  static attachBackBtnListener() {
+  static attachBackBtnListener(hapInterval) {
+    
     PetView.renderBackBtn().addEventListener('click', () => {
-      PetView.renderHomepage()
+      clearInterval(hapInterval) //stop game clock interval on click
+
+      PetView.renderHomepage() // back to homepage. Create all pet buttons from instantiated pets
       Pet.all.forEach(p => {
         PetView.renderPetBtn(p)
         .addEventListener('click', () => {
