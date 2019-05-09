@@ -217,6 +217,7 @@ class PetView {
 
   // create a button for each pet pulled from the database and instantiated client-side
   static renderPetBtn(pet) {
+    debugger
     const petBtn = document.createElement('button')
     const div = document.querySelector('#show-pet-buttons')
 
@@ -225,6 +226,17 @@ class PetView {
     
     div.appendChild(petBtn)
     return petBtn
+  }
+
+  static renderBackBtn() {
+    const backBtn = document.createElement('button')
+    const div = document.querySelector('#show-pet-buttons')
+
+    backBtn.innerText = 'Back'
+    backBtn.className = 'button is-warning'
+
+    div.appendChild(backBtn)
+    return backBtn
   }
 
 // update main-container to show final status of the game
