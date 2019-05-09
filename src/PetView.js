@@ -94,6 +94,8 @@ class PetView {
       </div>
       </div>
       `
+
+      document.querySelector('#show-pet-buttons').innerText = ''
   }
 
   //skeleton of show page to display the proper divs. To be updated with proper pet information upon successfull instantiation

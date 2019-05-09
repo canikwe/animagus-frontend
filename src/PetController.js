@@ -34,6 +34,8 @@ class PetController{
     petBtns.innerHTML = ''
 
     PetController.startGamePlay(pet)
+    PetController.attachBackBtnListener()
+
   }
 
   static handleCharacteristic(characteristic, pet) {
@@ -67,8 +69,6 @@ class PetController{
   
           //send to backend for db persistence
           Adapter.updatePetDB(currentPet.id, {active_status: currentPet.active_status, happiness: 0})
-
-          PetController.attachBackBtnListener()
   
         } else if (currentPet.happiness >= 100) {
           PetView.endGame(currentPet)
@@ -80,8 +80,6 @@ class PetController{
 
           //send to backend for db persistence
           Adapter.updatePetDB(currentPet.id, {active_status: currentPet.active_status, happiness: 100, level: 2})
-
-          PetController.attachBackBtnListener()
   
         } else {
           PetController.checkCharacteristic(currentPet)
@@ -89,8 +87,6 @@ class PetController{
       }, 10)
     } else {
       PetView.endGame(currentPet)
-      PetController.attachBackBtnListener()
-
     }
   }
 
