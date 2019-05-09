@@ -241,7 +241,7 @@ class PetView {
     const div = document.querySelector('#show-pet-buttons')
 
     backBtn.innerText = 'Back'
-    backBtn.className = 'button is-warning'
+    backBtn.className = 'button is-warning pet'
 
     div.appendChild(backBtn)
     return backBtn
