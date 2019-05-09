@@ -118,27 +118,10 @@ class PetController{
 
   // create event listeners for each picture in the pet-gallery
   static attachGalleryListeners() {
-    
-    document.querySelector("#pet-button-1").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-2").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-3").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-4").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-5").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-6").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-7").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-8").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-9").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-10").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-11").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-12").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-13").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-14").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-15").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-16").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-17").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-18").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-19").addEventListener('click', PetController.handleClickOfPetImage)
-    document.querySelector("#pet-button-20").addEventListener('click', PetController.handleClickOfPetImage)
+    let i
+    for (i = 1; i <= 20; i++) {
+    document.querySelector(`#pet-button-${i}`).addEventListener('click', PetController.handleClickOfPetImage)
+    }
   }
 
   // create event listener for the pet-form
