@@ -47,6 +47,11 @@ class PetController{
       document.querySelectorAll('.false').forEach(btn => btn.style = '')
       document.querySelectorAll('.true').forEach(btn => btn.style='display:none')
     })
+
+    document.querySelector('#all').addEventListener('change', () => {
+      document.querySelectorAll('.pet').forEach(btn => btn.style= '')
+    })
+
   }
 
   static handleCharacteristic(characteristic, pet) {

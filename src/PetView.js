@@ -246,9 +246,9 @@ class PetView {
     const filterDiv = document.createElement('div')
 
     allLbl.className = 'radio'
+    allLbl.id = 'all'
     allInput.type = 'radio'
     allInput.name = 'filter'
-    // allInput.id = 'all'
     
     activeLbl.className = 'radio'
     activeLbl.id = 'active'
