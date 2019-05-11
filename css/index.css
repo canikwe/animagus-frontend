@@ -96,6 +96,10 @@ h1 {
   justify-content: center
 }
 
+.display-none {
+  display: none
+}
+
 /* #image-display {
   display: none;
 } */

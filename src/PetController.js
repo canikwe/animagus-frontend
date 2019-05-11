@@ -12,6 +12,7 @@ class PetController{
           PetController.gameEventListeners(pet)
         })
       })
+      PetController.filterEventListeners()
     })
   }
 
@@ -28,12 +29,21 @@ class PetController{
       })
     })
 
-    
     // clear buttons from the show-pet-buttons div while game is in play
     PetView.clearPetBtns()
-
+    
     PetController.startGamePlay(pet)
+    
+  }
 
+  // add event listeners to the filter buttons
+  static filterEventListeners() {
+    document.querySelector('#active').addEventListener('change', (e) => {
+      // e.preventDefault()
+      e.stopPropagation()
+
+      document.querySelectorAll('.false').forEach(btn => btn.style='display: none')
+    })
   }
 
   static handleCharacteristic(characteristic, pet) {

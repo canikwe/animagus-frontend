@@ -237,33 +237,36 @@ class PetView {
   static showPetTabs() {
 
     const div = document.querySelector('#show-pet-buttons')
-    const allBtn = document.createElement('input')
-    const activeBtn = document.createElement('input')
-    const inactiveBtn = document.createElement('input')
+    const allInput = document.createElement('input')
+    const activeInput = document.createElement('input')
+    const inactiveInput = document.createElement('input')
     const allLbl = document.createElement('label')
     const activeLbl = document.createElement('label')
     const inactiveLbl = document.createElement('label')
     const filterDiv = document.createElement('div')
 
     allLbl.className = 'radio'
-    allBtn.type = 'radio'
-    allBtn.name = 'filter'
+    allInput.type = 'radio'
+    allInput.name = 'filter'
+    // allInput.id = 'all'
     
     activeLbl.className = 'radio'
-    activeBtn.type = 'radio'
-    activeBtn.name = 'filter'
+    activeLbl.id = 'active'
+    activeInput.type = 'radio'
+    activeInput.name = 'filter'
 
     inactiveLbl.className = 'radio'
-    inactiveBtn.type = 'radio'
-    inactiveBtn.name = 'filter'
+    inactiveInput.type = 'radio'
+    inactiveInput.name = 'filter'
+    // inactiveInput.id = 'inactive'
 
     filterDiv.className = 'control'
     filterDiv.id = 'filter'
 
+    allLbl.append(allInput, 'All Pets')
+    activeLbl.append(activeInput, 'Active Pets')
+    inactiveLbl.append(inactiveInput, 'Inactive Pets')
 
-    allLbl.append(allBtn, 'All Pets')
-    activeLbl.append(activeBtn, 'Active Pets')
-    inactiveLbl.append(inactiveBtn, 'Inactive Pets')
     filterDiv.append(allLbl, activeLbl, inactiveLbl)
     div.append(filterDiv)
     
@@ -275,7 +278,7 @@ class PetView {
     const div = document.querySelector('#show-pet-buttons')
 
     petBtn.innerText = pet.name
-    petBtn.className = "button is-warning pet"
+    petBtn.className = `button is-warning pet ${pet.active_status}`
     
     div.appendChild(petBtn)
     return petBtn
