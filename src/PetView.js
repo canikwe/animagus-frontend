@@ -256,9 +256,9 @@ class PetView {
     activeInput.name = 'filter'
 
     inactiveLbl.className = 'radio'
+    inactiveLbl.id = 'inactive'
     inactiveInput.type = 'radio'
     inactiveInput.name = 'filter'
-    // inactiveInput.id = 'inactive'
 
     filterDiv.className = 'control'
     filterDiv.id = 'filter'

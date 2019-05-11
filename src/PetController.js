@@ -38,11 +38,12 @@ class PetController{
 
   // add event listeners to the filter buttons
   static filterEventListeners() {
-    document.querySelector('#active').addEventListener('change', (e) => {
-      // e.preventDefault()
-      e.stopPropagation()
-
+    document.querySelector('#active').addEventListener('change', () => {
       document.querySelectorAll('.false').forEach(btn => btn.style='display: none')
+    })
+
+    document.querySelector('#inactive').addEventListener('change', () => {
+      document.querySelectorAll('.true').forEach(btn => btn.style='display:none')
     })
   }
 
