@@ -1,10 +1,10 @@
-// const assert = require("chai").assert
-// const Pet = require('../src/Pet')
-// const expect = require('chai').expect;
+const assert = require("chai").assert
+const Pet = require('../src/Pet')
+const expect = require('chai').expect;
 
 
-const expect = chai.expect
-const assert = chai.assert
+// const expect = chai.expect
+// const assert = chai.assert
 
 /////////// UNIT TESTS ///////////
 

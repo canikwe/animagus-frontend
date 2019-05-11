@@ -58,4 +58,4 @@ class Pet {
 //contains all instantiated pets
 Pet.all = []
 
-
+module.exports = Pet

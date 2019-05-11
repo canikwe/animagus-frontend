@@ -136,3 +136,8 @@ img#pet-pic {
 #happi {
   width: 276px;
 }
+
+div.notification.is-danger.note {
+  padding: 20px 10px 10px 10px ;
+  margin: 5px;
+}

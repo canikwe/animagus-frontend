@@ -1,3 +1,6 @@
+// const fetch = require("node-fetch")
+
+
 class Adapter {
   static baseUrl() {
     return `http://localhost:3000/api/v1/pets`
@@ -51,3 +54,4 @@ class Adapter {
   }
 }
 
+ module.exports = Adapter

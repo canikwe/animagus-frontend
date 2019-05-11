@@ -190,15 +190,24 @@ class PetView {
       const del_btn = document.createElement('button')
 
       del_btn.className='delete'
-      notification.className = 'tag is-danger'
+      notification.className = 'notification is-danger note'
       notification.innerText = `It is time to ${c.action} your pet!`
 
       notification.append(del_btn)
-      stats.append(notification)
+      stats.prepend(notification)
 
       del_btn.addEventListener('click', () => {
         stats.removeChild(notification)
       })
+
+      PetView.removeNotifications(stats)
+    }
+  }
+
+  //remove old notifications from the stats tile
+  static removeNotifications(stats) {
+    if (stats.childElementCount > 4) {
+      stats.removeChild(stats.lastElementChild)
     }
   }
 
