@@ -49,12 +49,12 @@ h1 {
   font-family: 'Prompt', sans-serif;
 }
 
-#dog-form {
-  height: 505px;
+#create-form {
+  height: 700px;
 }
 
 #make-a-pet {
-  height: 630px;
+  height: 700px;
 }
 
 #area {
@@ -107,6 +107,7 @@ button.pet.button.is-warning {
   color: rgb(28, 146, 235);
   font-family: 'Russo One', sans-serif;
   font-size: 1.5em;
+  margin: 5px
 }
 
 img#pet-pic {
