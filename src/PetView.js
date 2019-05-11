@@ -17,7 +17,7 @@ class PetView {
 
           <div class="tile is-parent" id="create-form">
             <article class="tile is-child notification is-warning">
-              <h1 class="title" id="create-pet">Create New Pet</h1>
+              <h1 class="title" id="create-pet">Create a New Pet</h1>
               <form id="pet-form">
                 <div class="field">
                   <label class="label is-large" name="name">Name</label>
@@ -33,7 +33,7 @@ class PetView {
                   </div>
                 </div>
 
-                <div class="field">
+                <div class="field" id="image-display">
                   <label class="label is-large" name="image">Image</label>
                   <div class="control">
                     <input id="image-input" class="input is-large" type="text" placeholder="Choose From Pet Gallery Below"/>
@@ -92,6 +92,8 @@ class PetView {
       `
 
       PetView.clearPetBtns()
+      PetView.showPetTabs()
+
   }
 
   //skeleton of show page to display the proper divs. To be updated with proper pet information upon successfull instantiation
@@ -232,7 +234,42 @@ class PetView {
     document.querySelector("#happiness").innerText = happiness
   }
 
-  // create a button for each pet pulled from the database and instantiated client-side
+  static showPetTabs() {
+
+    const div = document.querySelector('#show-pet-buttons')
+    const allBtn = document.createElement('input')
+    const activeBtn = document.createElement('input')
+    const inactiveBtn = document.createElement('input')
+    const allLbl = document.createElement('label')
+    const activeLbl = document.createElement('label')
+    const inactiveLbl = document.createElement('label')
+    const filterDiv = document.createElement('div')
+
+    allLbl.className = 'radio'
+    allBtn.type = 'radio'
+    allBtn.name = 'filter'
+    
+    activeLbl.className = 'radio'
+    activeBtn.type = 'radio'
+    activeBtn.name = 'filter'
+
+    inactiveLbl.className = 'radio'
+    inactiveBtn.type = 'radio'
+    inactiveBtn.name = 'filter'
+
+    filterDiv.className = 'control'
+    filterDiv.id = 'filter'
+
+
+    allLbl.append(allBtn, 'All Pets')
+    activeLbl.append(activeBtn, 'Active Pets')
+    inactiveLbl.append(inactiveBtn, 'Inactive Pets')
+    filterDiv.append(allLbl, activeLbl, inactiveLbl)
+    div.append(filterDiv)
+    
+  }
+
+  // create a button for each pet pulled from the database in the #show=pet-buttons div
   static renderPetBtn(pet) {
     const petBtn = document.createElement('button')
     const div = document.querySelector('#show-pet-buttons')
@@ -250,6 +287,7 @@ class PetView {
     petBtns.innerHTML = ''
   }
 
+  // create back button to navigate back to the homepage
   static renderBackBtn() {
     const backBtn = document.createElement('button')
     const div = document.querySelector('#show-pet-buttons')
