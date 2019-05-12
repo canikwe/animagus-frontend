@@ -29,7 +29,7 @@ class PetView {
                 <div class="field">
                   <label class="label is-large" name="age">Age</label>
                   <div class="control">
-                    <input class="input is-large" type="text" id="age" placeholder="Enter Pet Age"/>
+                    <input class="input is-large" type="number" min='0' id="age" placeholder="Enter Pet Age"/>
                   </div>
                 </div>
 
