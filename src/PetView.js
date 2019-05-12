@@ -92,7 +92,6 @@ class PetView {
       `
 
       PetView.clearPetBtns()
-      PetView.petFilters()
 
   }
 
@@ -234,49 +233,40 @@ class PetView {
     document.querySelector("#happiness").innerText = happiness
   }
 
-  static petFilters() {
-
+  // create radio buttons to filter out the displayed pet buttons by active status
+  static renderPetFilters() {
     const div = document.querySelector('#pet-filter')
-    const allInput = document.createElement('input')
-    const activeInput = document.createElement('input')
-    const inactiveInput = document.createElement('input')
-    const allLbl = document.createElement('label')
-    const activeLbl = document.createElement('label')
-    const inactiveLbl = document.createElement('label')
     const filterDiv = document.createElement('div')
-    const allSpan = document.createElement('span')
-    const activeSpan = document.createElement('span')
-    const inactiveSpan = document.createElement('span')
-
-
-    allLbl.className = 'radio label-container'
-    allLbl.id = 'all'
-    allInput.type = 'radio'
-    allInput.name = 'filter'
-    allSpan.className = 'checkmark'
-
-    activeLbl.className = 'radio label-container'
-    activeLbl.id = 'active'
-    activeInput.type = 'radio'
-    activeInput.name = 'filter'
-    activeSpan.className = 'checkmark'
-
-    inactiveLbl.className = 'radio label-container'
-    inactiveLbl.id = 'inactive'
-    inactiveInput.type = 'radio'
-    inactiveInput.name = 'filter'
-    inactiveSpan.className = 'checkmark'
 
     filterDiv.className = 'control'
     filterDiv.id = 'filter'
 
-    allLbl.append(allInput, allSpan, 'All Pets')
-    activeLbl.append(activeInput, activeSpan, 'Active Pets')
-    inactiveLbl.append(inactiveInput, inactiveSpan, 'Inactive Pets')
-
-    filterDiv.append(allLbl, activeLbl, inactiveLbl)
-    div.append(filterDiv)
+    const filters = [{id: 'all', label: 'All Pets'}, {id: 'active', label: 'Active Pets'}, {id: 'inactive', label: 'Inactive Pets'}]
     
+    filters.forEach(f => {
+      const input = document.createElement('input')
+      const label = document.createElement('label')
+      const span = document.createElement('span')
+
+      label.className = 'radio label-container'
+      label.id = f.id
+      input.type = 'radio'
+      input.name = 'filter'
+      span.className = 'checkmark'
+
+      label.append(input, span, f.label)
+      filterDiv.append(label)
+    })
+
+    div.append(filterDiv)
+  }
+
+  static hideFilters() {
+    document.querySelector('#pet-filter').style = 'display:none'
+  }
+
+  static displayFilters() {
+    document.querySelector('#pet-filter').style = 'display:block'
   }
 
   // create a button for each pet pulled from the database in the #show=pet-buttons div

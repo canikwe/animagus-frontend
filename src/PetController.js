@@ -9,6 +9,7 @@ class PetController{
         const pet = new Pet(p)
         PetView.renderPetBtn(pet)
         .addEventListener('click', () => {
+          PetView.hideFilters()
           PetController.gameEventListeners(pet)
         })
       })
@@ -148,6 +149,7 @@ class PetController{
 
       // render homepage and attach all event listeners
       PetView.renderHomepage()
+      PetView.displayFilters()
       PetController.attachGalleryListeners()
       PetController.attachFormListeners()
       
