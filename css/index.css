@@ -53,10 +53,12 @@ h1 {
 
 #create-form {
   height: 100%;
+  display: flex
 }
 
 #make-a-pet {
   height: 100%;
+  display: flex
 }
 
 #area {

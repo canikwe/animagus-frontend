@@ -9,16 +9,16 @@ class PetController{
         const pet = new Pet(p)
         PetView.renderPetBtn(pet)
         .addEventListener('click', () => {
-          PetView.hideFilters()
           PetController.gameEventListeners(pet)
         })
       })
       PetController.filterEventListeners()
     })
   }
-
+  
   // update DOM and add event listeners for played pet
   static gameEventListeners(pet) {
+    PetView.hideFilters()
     PetView.renderGamePlay()
     PetView.updateDOM(pet)
     pet.pet_characteristics.forEach(char => {
