@@ -92,7 +92,7 @@ class PetView {
       `
 
       PetView.clearPetBtns()
-      PetView.showPetTabs()
+      PetView.petFilters()
 
   }
 
@@ -234,9 +234,9 @@ class PetView {
     document.querySelector("#happiness").innerText = happiness
   }
 
-  static showPetTabs() {
+  static petFilters() {
 
-    const div = document.querySelector('#show-pet-buttons')
+    const div = document.querySelector('#pet-filter')
     const allInput = document.createElement('input')
     const activeInput = document.createElement('input')
     const inactiveInput = document.createElement('input')
