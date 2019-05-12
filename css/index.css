@@ -199,7 +199,7 @@ div.notification.is-danger.note {
 
 /* When the radio button is checked, add a blue background */
 .label-container input:checked ~ .checkmark {
-  background-color: #2196F3;
+  background-color: #209cee;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */

@@ -184,12 +184,12 @@ class PetController{
       name: document.querySelector('#name').value,
       age: document.querySelector('#age').value,
       image: document.querySelector('#image-input').value,
-      bio: document.querySelector('#bio').value
     }
     
     Adapter.createPet(body).then(newPet => {
       console.log(newPet)
       const pet = new Pet(newPet)
+      PetView.hideFilters()
       PetController.gameEventListeners(pet) //start game with new pet
     })
   }
