@@ -244,28 +244,35 @@ class PetView {
     const activeLbl = document.createElement('label')
     const inactiveLbl = document.createElement('label')
     const filterDiv = document.createElement('div')
+    const allSpan = document.createElement('span')
+    const activeSpan = document.createElement('span')
+    const inactiveSpan = document.createElement('span')
 
-    allLbl.className = 'radio'
+
+    allLbl.className = 'radio label-container'
     allLbl.id = 'all'
     allInput.type = 'radio'
     allInput.name = 'filter'
-    
-    activeLbl.className = 'radio'
+    allSpan.className = 'checkmark'
+
+    activeLbl.className = 'radio label-container'
     activeLbl.id = 'active'
     activeInput.type = 'radio'
     activeInput.name = 'filter'
+    activeSpan.className = 'checkmark'
 
-    inactiveLbl.className = 'radio'
+    inactiveLbl.className = 'radio label-container'
     inactiveLbl.id = 'inactive'
     inactiveInput.type = 'radio'
     inactiveInput.name = 'filter'
+    inactiveSpan.className = 'checkmark'
 
     filterDiv.className = 'control'
     filterDiv.id = 'filter'
 
-    allLbl.append(allInput, 'All Pets')
-    activeLbl.append(activeInput, 'Active Pets')
-    inactiveLbl.append(inactiveInput, 'Inactive Pets')
+    allLbl.append(allInput, allSpan, 'All Pets')
+    activeLbl.append(activeInput, activeSpan, 'Active Pets')
+    inactiveLbl.append(inactiveInput, inactiveSpan, 'Inactive Pets')
 
     filterDiv.append(allLbl, activeLbl, inactiveLbl)
     div.append(filterDiv)
