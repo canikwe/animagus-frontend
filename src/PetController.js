@@ -180,8 +180,8 @@ class PetController{
   static handleFormSubmit(event) {
     event.preventDefault()
     
+    // only POST new pet to db if all fields have been filled out
     if(PetController.formValidations()) {
-
       const body = {
         name: document.querySelector('#name').value,
         age: document.querySelector('#age').value,
@@ -194,21 +194,20 @@ class PetController{
         PetView.hideFilters()
         PetController.gameEventListeners(pet) //start game with new pet
       })
-    }
-    
+    } 
   }
 
   // returns false if any field is left blank, preventing db pet creation and front-end pet instantiation
   static formValidations(){
     const formFields = [
-      {field: 'name', value: document.querySelector('#name').value},
-      {field: 'age', value: document.querySelector('#age').value},
-      {field: 'image', value: document.querySelector('#image-input').value}
+      {field: 'Name', value: document.querySelector('#name').value},
+      {field: 'Age', value: document.querySelector('#age').value},
+      {field: 'Image', value: document.querySelector('#image-input').value}
     ]
 
     for(let f of formFields){
       if (f.value === '') {
-        alert(`Please fill out a ${f.field} to play!`)
+        alert(`Please fill out the ${f.field} field to play!`)
         return false
       }
     }
