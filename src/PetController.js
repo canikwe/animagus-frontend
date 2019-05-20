@@ -180,18 +180,39 @@ class PetController{
   static handleFormSubmit(event) {
     event.preventDefault()
     
-    const body = {
-      name: document.querySelector('#name').value,
-      age: document.querySelector('#age').value,
-      image: document.querySelector('#image-input').value,
+    if(PetController.formValidations()) {
+
+      const body = {
+        name: document.querySelector('#name').value,
+        age: document.querySelector('#age').value,
+        image: document.querySelector('#image-input').value,
+      }
+
+      Adapter.createPet(body).then(newPet => {
+        console.log(newPet)
+        const pet = new Pet(newPet)
+        PetView.hideFilters()
+        PetController.gameEventListeners(pet) //start game with new pet
+      })
     }
     
-    Adapter.createPet(body).then(newPet => {
-      console.log(newPet)
-      const pet = new Pet(newPet)
-      PetView.hideFilters()
-      PetController.gameEventListeners(pet) //start game with new pet
-    })
+  }
+
+  // returns false if any field is left blank, preventing db pet creation and front-end pet instantiation
+  static formValidations(){
+    const formFields = [
+      {field: 'name', value: document.querySelector('#name').value},
+      {field: 'age', value: document.querySelector('#age').value},
+      {field: 'image', value: document.querySelector('#image-input').value}
+    ]
+
+    for(let f of formFields){
+      if (f.value === '') {
+        alert(`Please fill out a ${f.field} to play!`)
+        return false
+      }
+    }
+    return true
   }
 
   // show pet image in the main pet div when button is clicked in the pet-gallery
