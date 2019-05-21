@@ -4,8 +4,8 @@ class PetView {
   static renderHomepage() {
       document.querySelector('#main-container').innerHTML = 
       `
-        <div class="container" id='pet-form-container'>
-          <div class="tile is-parent" id="make-a-pet">
+        <div class="tile is-parent" id='pet-form-container'>
+          <div class="tile is-child" id="make-a-pet">
             <article class="tile is-child notification is-info">
               <p class="title">Make a pet...</p>
               <p class="subtitle">...and keep it alive!</p>
@@ -53,8 +53,7 @@ class PetView {
           </div>
         </div>
 
-        <div class="container" id="gallery-container">
-          <div class="tile is-parent">
+        <div class="tile is-parent" id="gallery-container">
 
             <article class="tile is-child notification is-danger">
               <h1 class="title" id="gallery">Pet Gallery</h1>
@@ -87,7 +86,6 @@ class PetView {
                 <button id="pet-button-20" data-id="20"><img class="pet-image" id="pet-image-20" src="images/da5LLrL.gif"></button>
               </div>
             </article>
-          </div>
         </div>
       `
 

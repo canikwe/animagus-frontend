@@ -2,6 +2,10 @@ h1 {
   font-size: 3rem;
 }
 
+#wrapper {
+  width: 900px
+}
+
 /*Show Page -- divs*/
 #pic-div {
   background-color: #e0739e;
@@ -29,12 +33,11 @@ h1 {
 
 /*Pet Form -- divs*/
 #pet-form-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 900px;
   height: 600px;
+}
 
+div#main-container.container{
+  width: 900px
 }
 
 #pet-form-container h1 {
