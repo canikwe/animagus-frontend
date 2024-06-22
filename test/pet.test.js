@@ -1,171 +1,178 @@
-const assert = require("chai").assert
-const Pet = require('../src/Pet')
-const expect = require('chai').expect;
-
+const assert = require("chai").assert;
+const Pet = require("../src/Pet");
+const expect = require("chai").expect;
 
 // const expect = chai.expect
 // const assert = chai.assert
 
 /////////// UNIT TESTS ///////////
 
-const spot = new Pet({name: 'Spot', happiness: 50, active_status: true, pet_characteristics: [
+const spot = new Pet({
+  name: "Spot",
+  happiness: 50,
+  active_status: true,
+  pet_characteristics: [
     {
-      "id": 1,
-      "pet_id": 1,
-      "characteristic_id": 1,
-      "name": "Feed",
-      "level": 1,
-      "decr": 10,
-      "incr": 10,
-      "action": "feed",
-      "calculate_check_time": "2019-05-02T21:43:20.455Z",
-      "created_at": "2019-05-02T21:40:29.242Z",
-      "check_time": null,
-      "action_status": false,
-      "action_verb": "fed",
-      "interval": 20000
-    }, 
-    {
-      "id": 2,
-      "pet_id": 1,
-      "characteristic_id": 2,
-      "name": "Play",
-      "level": 1,
-      "decr": 3,
-      "incr": 3,
-      "action": "play with",
-      "calculate_check_time": "2019-05-02T21:43:09.457Z",
-      "created_at": "2019-05-02T21:40:29.260Z",
-      "check_time": null,
-      "action_status": false,
-      "action_verb": "played",
-      "interval": 10000
+      id: 1,
+      pet_id: 1,
+      characteristic_id: 1,
+      name: "Feed",
+      level: 1,
+      decr: 10,
+      incr: 10,
+      action: "feed",
+      calculate_check_time: "2019-05-02T21:43:20.455Z",
+      created_at: "2019-05-02T21:40:29.242Z",
+      check_time: null,
+      action_status: false,
+      action_verb: "fed",
+      interval: 20000,
     },
     {
-      "id": 3,
-      "pet_id": 1,
-      "characteristic_id": 3,
-      "name": "Clean",
-      "level": 1,
-      "decr": 5,
-      "incr": 5,
-      "action": "clean",
-      "calculate_check_time": "2019-05-02T21:43:49.454Z",
-      "created_at": "2019-05-02T21:40:29.250Z",
-      "check_time": null,
-      "action_status": false,
-      "action_verb": "cleaned",
-      "interval": 30000 
-    }]
-  })
+      id: 2,
+      pet_id: 1,
+      characteristic_id: 2,
+      name: "Play",
+      level: 1,
+      decr: 3,
+      incr: 3,
+      action: "play with",
+      calculate_check_time: "2019-05-02T21:43:09.457Z",
+      created_at: "2019-05-02T21:40:29.260Z",
+      check_time: null,
+      action_status: false,
+      action_verb: "played",
+      interval: 10000,
+    },
+    {
+      id: 3,
+      pet_id: 1,
+      characteristic_id: 3,
+      name: "Clean",
+      level: 1,
+      decr: 5,
+      incr: 5,
+      action: "clean",
+      calculate_check_time: "2019-05-02T21:43:49.454Z",
+      created_at: "2019-05-02T21:40:29.250Z",
+      check_time: null,
+      action_status: false,
+      action_verb: "cleaned",
+      interval: 30000,
+    },
+  ],
+});
 
-const notSpot = new Pet({name: 'notSpot', happiness: 50, active_status: true, pet_characteristics: [
-  {
-    "id": 1,
-    "pet_id": 1,
-    "characteristic_id": 1,
-    "name": "Feed",
-    "level": 1,
-    "decr": 10,
-    "incr": 10,
-    "action": "feed",
-    "calculate_check_time": "2019-05-02T21:43:20.455Z",
-    "created_at": "2019-05-02T21:40:29.242Z",
-    "check_time": null,
-    "action_status": false,
-    "action_verb": "fed",
-    "interval": 20000
-  }, 
-  {
-    "id": 2,
-    "pet_id": 1,
-    "characteristic_id": 2,
-    "name": "Play",
-    "level": 1,
-    "decr": 3,
-    "incr": 3,
-    "action": "play with",
-    "calculate_check_time": "2019-05-02T21:43:09.457Z",
-    "created_at": "2019-05-02T21:40:29.260Z",
-    "check_time": "2019-05-02T21:40:29.260Z",
-    "action_status": false,
-    "action_verb": "played",
-    "interval": 10000
-  },
-  {
-    "id": 3,
-    "pet_id": 1,
-    "characteristic_id": 3,
-    "name": "Clean",
-    "level": 1,
-    "decr": 5,
-    "incr": 5,
-    "action": "clean",
-    "calculate_check_time": "2019-05-02T21:43:49.454Z",
-    "created_at": "2019-05-02T21:40:29.250Z",
-    "check_time": null,
-    "action_status": false,
-    "action_verb": "cleaned",
-    "interval": 30000 
-  }]
-})
+const notSpot = new Pet({
+  name: "notSpot",
+  happiness: 50,
+  active_status: true,
+  pet_characteristics: [
+    {
+      id: 1,
+      pet_id: 1,
+      characteristic_id: 1,
+      name: "Feed",
+      level: 1,
+      decr: 10,
+      incr: 10,
+      action: "feed",
+      calculate_check_time: "2019-05-02T21:43:20.455Z",
+      created_at: "2019-05-02T21:40:29.242Z",
+      check_time: null,
+      action_status: false,
+      action_verb: "fed",
+      interval: 20000,
+    },
+    {
+      id: 2,
+      pet_id: 1,
+      characteristic_id: 2,
+      name: "Play",
+      level: 1,
+      decr: 3,
+      incr: 3,
+      action: "play with",
+      calculate_check_time: "2019-05-02T21:43:09.457Z",
+      created_at: "2019-05-02T21:40:29.260Z",
+      check_time: "2019-05-02T21:40:29.260Z",
+      action_status: false,
+      action_verb: "played",
+      interval: 10000,
+    },
+    {
+      id: 3,
+      pet_id: 1,
+      characteristic_id: 3,
+      name: "Clean",
+      level: 1,
+      decr: 5,
+      incr: 5,
+      action: "clean",
+      calculate_check_time: "2019-05-02T21:43:49.454Z",
+      created_at: "2019-05-02T21:40:29.250Z",
+      check_time: null,
+      action_status: false,
+      action_verb: "cleaned",
+      interval: 30000,
+    },
+  ],
+});
 
-describe('Pet.js', () => {
-
-  context('When passed a pet object', () => {
-    it('should instantiate a new pet', () => {
-      assert.typeOf(spot, 'object')
-      assert.hasAnyKeys(spot, {name: "Spot"})
+describe("Pet.js", () => {
+  context("When passed a pet object", () => {
+    it("should instantiate a new pet", () => {
+      assert.typeOf(spot, "object");
+      assert.hasAnyKeys(spot, { name: "Spot" });
       assert.instanceOf(spot, Pet);
-    })
-  })
+    });
+  });
 
-  context('When given a new happiness score', () => {
-    it('should increase the happiness by the given amount', () => {
-      spot.increaseHappiness(10)
-      expect(spot.happiness).to.equal(60) 
-    })
+  context("When given a new happiness score", () => {
+    it("should increase the happiness by the given amount", () => {
+      spot.increaseHappiness(10);
+      expect(spot.happiness).to.equal(60);
+    });
 
-    it('should decrease the happiness by the given amount', () => {
-      notSpot.decreaseHappiness(5)
-      expect(notSpot.happiness).to.equal(45)
-    })
-  })
+    it("should decrease the happiness by the given amount", () => {
+      notSpot.decreaseHappiness(5);
+      expect(notSpot.happiness).to.equal(45);
+    });
+  });
 
-  context('When #careForPet() is called', () => {
-    it('should have a true action_status', () => {
-      notSpot.careForPet(notSpot.pet_characteristics[0])
-      expect(notSpot.pet_characteristics[0].action_status).to.equal(true)
-    })
+  context("When #careForPet() is called", () => {
+    it("should have a true action_status", () => {
+      notSpot.careForPet(notSpot.pet_characteristics[0]);
+      expect(notSpot.pet_characteristics[0].action_status).to.equal(true);
+    });
+  });
 
-  })
-    
-    context('When #resetCharacteristic() is called', () => {
-      it('should have a false action_status', () => {
-        const oldTime = new Date({...notSpot.pet_characteristics[1]}.check_time)
+  context("When #resetCharacteristic() is called", () => {
+    it("should have a false action_status", () => {
+      const oldTime = new Date(
+        { ...notSpot.pet_characteristics[1] }.check_time
+      );
 
-        notSpot.resetCharacteristic(notSpot.pet_characteristics[0])
+      notSpot.resetCharacteristic(notSpot.pet_characteristics[0]);
 
-        expect(notSpot.pet_characteristics[0].action_status).to.equal(false)
-        assert.isAbove(notSpot.pet_characteristics[0].check_time, oldTime)
-      })
-    })
+      expect(notSpot.pet_characteristics[0].action_status).to.equal(false);
+      assert.isAbove(notSpot.pet_characteristics[0].check_time, oldTime);
+    });
+  });
 
-    context('When #createChars() is called', () => {
-      it('creates a new Date object for check_time if it is null', () => {
-        notSpot.createChars()
-        assert.instanceOf(notSpot.pet_characteristics[0].check_time, Date)
-      })
+  context("When #createChars() is called", () => {
+    it("creates a new Date object for check_time if it is null", () => {
+      notSpot.createChars();
+      assert.instanceOf(notSpot.pet_characteristics[0].check_time, Date);
+    });
 
-      it('updates the check_time to a newer date', () => {
-        const oldTime = {...notSpot.pet_characteristics[1]}.check_time
-        notSpot.createChars()
-        assert.isAtLeast(notSpot.pet_characteristics[1].check_time, oldTime)
-      })
-    })
-
-})
-
+    it("updates the check_time to a newer date", () => {
+      const oldTime = { ...notSpot.pet_characteristics[1] }.check_time;
+      notSpot.createChars();
+      assert.isAtLeast(notSpot.pet_characteristics[1].check_time, oldTime);
+    });
+  });
+});
 
 /////////// INTEGRATION TESTS ///////////
 
