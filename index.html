@@ -1,54 +1,64 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
     <title>Animagus</title>
 
-  <!--Style Sheets-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-    <link rel="stylesheet" href="css/index.css">
+    <!--Style Sheets-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="css/index.css" />
 
-  <!--  Javascript Files-->
+    <!--  Javascript Files-->
     <script src="src/Adapter.js"></script>
     <script src="src/Pet.js"></script>
     <script src="src/PetController.js"></script>
     <script src="src/PetView.js"></script>
     <script src="src/index.js"></script>
 
-  <!-- Font Files -->
-    <style>@import url('https://fonts.googleapis.com/css?family=Acme');</style>
-    <style>@import url('https://fonts.googleapis.com/css?family=Prompt');</style>
-    <style>@import url('https://fonts.googleapis.com/css?family=Russo+One');</style>
+    <!-- Font Files -->
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Acme");
+    </style>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Prompt");
+    </style>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Russo+One");
+    </style>
   </head>
 
   <body>
-    <div class='wrapper container'>
-
+    <div class="wrapper container">
       <!-- Header -->
       <div class="container" id="animagus-container">
         <div class="tile is-parent is-horizontal">
-              <article class="tile is-child notification is-primary">
-                <h1 id="animagus">ANIMAGUS</h1>
-                <div id="pet-filter"></div>
-                <div style="display: inline-block;" id="show-pet-buttons"></div>
-              </article>
+          <article class="tile is-child notification is-primary">
+            <h1 id="animagus">ANIMAGUS</h1>
+            <div id="pet-filter"></div>
+            <div style="display: inline-block" id="show-pet-buttons"></div>
+          </article>
         </div>
       </div>
-  
+
       <!--Main div for JS rendering-->
-      <div class="container" id="main-container">
-        
-      </div>
-  
+      <div class="container" id="main-container"></div>
+
       <!--   Footer -->
       <footer class="footer">
         <div class="content has-text-centered">
           <p>
-            © 2019 <strong>Animagus</strong> by <a href='https://github.com/canikwe/animagus-frontend'>Chine, Dusty, Hai </a>. The source code is licensed
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. All Rights Reserved.
+            © 2019 <strong>Animagus</strong> by
+            <a href="https://github.com/canikwe/animagus-frontend"
+              >Chine, Dusty, Hai </a
+            >. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+            All Rights Reserved.
           </p>
         </div>
       </footer>

@@ -1,9 +1,7 @@
 class PetView {
-
   //homepage to render the pet create form and pet gallery
   static renderHomepage() {
-      document.querySelector('#main-container').innerHTML = 
-      `
+    document.querySelector("#main-container").innerHTML = `
         <div class="tile is-parent" id='pet-form-container'>
           <div class="tile is-child" id="make-a-pet">
             <article class="tile is-child notification is-info">
@@ -87,16 +85,14 @@ class PetView {
               </div>
             </article>
         </div>
-      `
+      `;
 
-      PetView.clearPetBtns()
-
+    PetView.clearPetBtns();
   }
 
   //skeleton of show page to display the proper divs. To be updated with proper pet information upon successfull instantiation
   static renderGamePlay() {
-    document.querySelector("#main-container").innerHTML =
-      `
+    document.querySelector("#main-container").innerHTML = `
       <div class="container" id="skeleton">
         <div class="tile is-ancestor">
           <div class="tile is-vertical is-8">
@@ -109,209 +105,211 @@ class PetView {
                   </figure>
                 </article>
               </div>
+            </div>
+            <div class="tile is-parent">
+              <article id="control-div" class="tile is-child notification is-danger">
+                <p class="title">Control Panel</p>
+                <div class="content" id="control-panel">
+                  
+                  <!-- Content -->
+
                 </div>
-                <div class="tile is-parent">
-                  <article id="control-div" class="tile is-child notification is-danger">
-                    <p class="title">Control Panel</p>
-                    <div class="content" id="control-panel">
-                      
+              </article>
+            </div>
+          </div>
+          <div class="tile is-parent is-vertical">
+            <div class="tile is-child box is-success" id="stats">
+                <p class="title">Pet Stats</p>
+                <div id="pet-stats">
+
+                  <!-- Content -->
+
+                </div>
+
+                <p class="subtitle"></p>
+                <div id="pet-notifications">
+
+                  <!-- Content -->
+
+                </div>
+              </div>
+              <div class="tile is-child box" id="happi">
+                <p class="title">Happiness</p>
+                  <!-- <p class="subtitle" id="level">Level: </p> -->
+
+                  <!-- Content -->
+
+                  <article class="tile is-child notification box">
+                    <div id="happiness" class="is-4by3">
+                        
                       <!-- Content -->
 
                     </div>
                   </article>
                 </div>
               </div>
-
-              <div class="tile is-parent is-vertical">
-                <div class="tile is-child box is-success" id="stats">
-                    <p class="title">Pet Stats</p>
-                    <div id="pet-stats">
-
-                      <!-- Content -->
-
-                    </div>
-
-                    <p class="subtitle"></p>
-                    <div id="pet-notifications">
-
-                      <!-- Content -->
-
-                    </div>
-                </div>
-                    <div class="tile is-child box" id="happi">
-                    <p class="title">Happiness</p>
-                    <!-- <p class="subtitle" id="level">Level: </p> -->
-
-                      <!-- Content -->
-
-                      <article class="tile is-child notification box">
-                        <div id="happiness" class="is-4by3">
-                        
-                          <!-- Content -->
-
-                        </div>
-                      </article>
-                  </div>
-                </div>
-              </div>
             </div>
-          `
+          </div>
+          `;
   }
 
   //create action buttons for characterstic in control panel
   static controlPanel(characteristic, pet) {
-    const ctrlPanel = document.querySelector("#control-panel")
-    const btn = document.createElement("button")
+    const ctrlPanel = document.querySelector("#control-panel");
+    const btn = document.createElement("button");
 
-    btn.classList = "button is-link char"
-    btn.innerText = characteristic.name
-    btn.id = characteristic.name
-    btn.disabled = characteristic.action_status
+    btn.classList = "button is-link char";
+    btn.innerText = characteristic.name;
+    btn.id = characteristic.name;
+    btn.disabled = characteristic.action_status;
 
     //append buttons to control panel div
-    ctrlPanel.append(btn)
+    ctrlPanel.append(btn);
 
     //add notifications to the stats div
-    PetView.pNotifications(characteristic, pet)
+    PetView.pNotifications(characteristic, pet);
 
     //return button to PetController to add event listeners
-    return btn
+    return btn;
   }
 
   //disable button so player cannot gain extra points before the check_time has been reached
   static disableBtn(btn) {
-    btn.disabled = true
+    btn.disabled = true;
   }
 
   static activateBtn(btn) {
-    btn.disabled = false
+    btn.disabled = false;
   }
 
   //append notifications to the notification div for active pets only
-  static pNotifications(c, pet){
+  static pNotifications(c, pet) {
     if (pet.active_status && !c.action_status) {
-      const stats = document.querySelector("#pet-notifications")
-      const notification = document.createElement("div")
-      const del_btn = document.createElement('button')
+      const stats = document.querySelector("#pet-notifications");
+      const notification = document.createElement("div");
+      const del_btn = document.createElement("button");
 
-      del_btn.className='delete'
-      notification.className = 'notification is-danger note'
-      notification.innerText = `It is time to ${c.action} your pet!`
+      del_btn.className = "delete";
+      notification.className = "notification is-danger note";
+      notification.innerText = `It is time to ${c.action} your pet!`;
 
-      notification.append(del_btn)
-      stats.prepend(notification)
+      notification.append(del_btn);
+      stats.prepend(notification);
 
-      del_btn.addEventListener('click', () => {
-        stats.removeChild(notification)
-      })
+      del_btn.addEventListener("click", () => {
+        stats.removeChild(notification);
+      });
 
-      PetView.removeNotifications(stats)
+      PetView.removeNotifications(stats);
     }
   }
 
   //remove old notifications from the stats tile
   static removeNotifications(stats) {
     if (stats.childElementCount > 4) {
-      stats.removeChild(stats.lastElementChild)
+      stats.removeChild(stats.lastElementChild);
     }
   }
 
   // update main-container div with current pet's information
-  static updateDOM(pet){
-    document.querySelector("#pet-name").innerText = pet.name
+  static updateDOM(pet) {
+    document.querySelector("#pet-name").innerText = pet.name;
 
-    document.querySelector("#pet-pic").src = pet.image
+    document.querySelector("#pet-pic").src = pet.image;
 
-    document.querySelector("#pet-stats").innerText = `Age: ${pet.age}`
+    document.querySelector("#pet-stats").innerText = `Age: ${pet.age}`;
 
-    PetView.updateHappiness(pet.happiness)    
+    PetView.updateHappiness(pet.happiness);
   }
 
   static updateHappiness(happiness) {
-    document.querySelector("#happiness").innerText = happiness
+    document.querySelector("#happiness").innerText = happiness;
   }
 
   // create radio buttons to filter out the displayed pet buttons by active status
   static renderPetFilters() {
-    const div = document.querySelector('#pet-filter')
-    const filterDiv = document.createElement('div')
+    const div = document.querySelector("#pet-filter");
+    const filterDiv = document.createElement("div");
 
-    filterDiv.className = 'control'
-    filterDiv.id = 'filter'
+    filterDiv.className = "control";
+    filterDiv.id = "filter";
 
-    const filters = [{id: 'all', label: 'All Pets'}, {id: 'active', label: 'Active Pets'}, {id: 'inactive', label: 'Inactive Pets'}]
-    
-    filters.forEach(f => {
-      const input = document.createElement('input')
-      const label = document.createElement('label')
-      const span = document.createElement('span')
+    const filters = [
+      { id: "all", label: "All Pets" },
+      { id: "active", label: "Active Pets" },
+      { id: "inactive", label: "Inactive Pets" },
+    ];
 
-      label.className = 'radio label-container'
-      label.id = f.id
-      input.type = 'radio'
-      input.name = 'filter'
-      span.className = 'checkmark'
+    filters.forEach((f) => {
+      const input = document.createElement("input");
+      const label = document.createElement("label");
+      const span = document.createElement("span");
 
-      label.append(input, span, f.label)
-      filterDiv.append(label)
-    })
+      label.className = "radio label-container";
+      label.id = f.id;
+      input.type = "radio";
+      input.name = "filter";
+      span.className = "checkmark";
 
-    div.append(filterDiv)
+      label.append(input, span, f.label);
+      filterDiv.append(label);
+    });
+
+    div.append(filterDiv);
   }
 
   static hideFilters() {
-    document.querySelector('#pet-filter').style = 'display:none'
+    document.querySelector("#pet-filter").style = "display:none";
   }
 
   static displayFilters() {
-    document.querySelector('#pet-filter').style = 'display:block'
+    document.querySelector("#pet-filter").style = "display:block";
   }
 
   // create a button for each pet pulled from the database in the #show=pet-buttons div
   static renderPetBtn(pet) {
-    const petBtn = document.createElement('button')
-    const div = document.querySelector('#show-pet-buttons')
+    const petBtn = document.createElement("button");
+    const div = document.querySelector("#show-pet-buttons");
 
-    petBtn.innerText = pet.name
-    petBtn.className = `button is-warning pet ${pet.active_status}`
-    
-    div.appendChild(petBtn)
-    return petBtn
+    petBtn.innerText = pet.name;
+    petBtn.className = `button is-warning pet ${pet.active_status}`;
+
+    div.appendChild(petBtn);
+    return petBtn;
   }
 
   // clear buttons from the show-pet-buttons div while game is in play
   static clearPetBtns() {
-    const petBtns = document.querySelector('#show-pet-buttons')
-    petBtns.innerHTML = ''
+    const petBtns = document.querySelector("#show-pet-buttons");
+    petBtns.innerHTML = "";
   }
 
   // create back button to navigate back to the homepage
   static renderBackBtn() {
-    const backBtn = document.createElement('button')
-    const div = document.querySelector('#show-pet-buttons')
+    const backBtn = document.createElement("button");
+    const div = document.querySelector("#show-pet-buttons");
 
-    backBtn.innerText = 'Back'
-    backBtn.className = 'button is-warning pet'
-    backBtn.id = 'back'
+    backBtn.innerText = "Back";
+    backBtn.className = "button is-warning pet";
+    backBtn.id = "back";
 
-    div.appendChild(backBtn)
-    return backBtn
+    div.appendChild(backBtn);
+    return backBtn;
   }
 
-// update main-container to show final status of the game
+  // update main-container to show final status of the game
   static endGame(pet) {
-    const buttons = document.querySelectorAll('.char')
-    buttons.forEach(button => button.disabled = true)
+    const buttons = document.querySelectorAll(".char");
+    buttons.forEach((button) => (button.disabled = true));
 
     if (pet.happiness <= 0) {
-      document.querySelector('#pet-pic').src = 'images/loser.png'
-      document.querySelector('#happiness').innerText = 'Dead'
+      document.querySelector("#pet-pic").src = "images/loser.png";
+      document.querySelector("#happiness").innerText = "Dead";
     } else if (pet.happiness >= 100) {
-      document.querySelector('#pet-pic').src = 'images/winner.png'
-      document.querySelector('#happiness').innerText = 'Won'
+      document.querySelector("#pet-pic").src = "images/winner.png";
+      document.querySelector("#happiness").innerText = "Won";
     }
 
-    document.querySelector('#pet-notifications').innerText = ''
+    document.querySelector("#pet-notifications").innerText = "";
   }
-
 }
